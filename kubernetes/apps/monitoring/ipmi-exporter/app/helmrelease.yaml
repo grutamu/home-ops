@@ -33,7 +33,7 @@ spec:
     - --config.file=/config/config.yml
     image:
       repository: prometheuscommunity/ipmi-exporter
-      tag: v1.6.1
+      tag: v1.7.0
     service:
       main:
         ports:
