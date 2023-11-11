@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ipmi-exporter
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      type: statefulset
+    args:
+    - --config.file=/config/config.yml
+    image:
+      repository: prometheuscommunity/ipmi-exporter
+      tag: v1.6.1
+    service:
+      main:
+        ports:
+          http:
+            port: 9290
+            protocol: TCP
+            targetPort: 9290
+    ingress:
+      enabled: false
+      ingressClassName: internal
+      annotations: []
+      hosts:
+        - &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - *host
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: ipmi-exporter-configmap
+        subPath: config.yml
+        mountPath: /config/config.yml
+        readOnly: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 250Mi
+      limits:
+        memory: 2000Mi
