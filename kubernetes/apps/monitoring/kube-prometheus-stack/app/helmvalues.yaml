@@ -143,7 +143,7 @@ data:
               target_label: instance
             - action: replace
               regex: .*
-              replacement: ipmi-exporter:9290
+              replacement: ipmi-exporter.monitoring:9290
               separator: ;
               target_label: __address__
             scheme: http
