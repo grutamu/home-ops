@@ -16,7 +16,6 @@ spec:
         namespace: flux-system
   maxHistory: 3
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
@@ -26,40 +25,56 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      type: statefulset
-    args:
-    - --config.file=/config/config.yml
-    image:
-      repository: prometheuscommunity/ipmi-exporter
-      tag: v1.7.0
+    controllers:
+      main:
+        ype: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: prometheuscommunity/ipmi-exporter
+              tag: v1.7.0
+            args:
+              - --config.file=/config/config.yml
+            resources:
+              requests:
+                cpu: 5m
+                memory: 10M
+              limits:
+                memory: 64M
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
     service:
       main:
         ports:
           http:
             port: 9290
-            protocol: TCP
-            targetPort: 9290
     ingress:
-      enabled: false
-      ingressClassName: internal
-      annotations: []
-      hosts:
-        - &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-      tls:
-        - hosts:
-            - *host
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          #external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          hajimari.io/icon: video-input-antenna
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
         type: configMap
         name: ipmi-exporter-configmap
-        subPath: config.yml
-        mountPath: /config/config.yml
-        readOnly: false
-    resources:
-      requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 2000Mi
+        globalMounts:
+          - path: /config/config.yml
+            subPath: config.yml
+            readOnly: true
