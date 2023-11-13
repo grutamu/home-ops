@@ -144,7 +144,7 @@ data:
             - separator: ;
               regex: .*
               target_label: __address__
-              replacement: ipmi-exporter:9290
+              replacement: ipmi-exporter.monitoring:9290
               action: replace
             static_configs:
             - labels:
