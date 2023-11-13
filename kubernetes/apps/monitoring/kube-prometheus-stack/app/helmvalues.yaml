@@ -147,9 +147,7 @@ data:
               replacement: ipmi-exporter:9290
               action: replace
             static_configs:
-            - labels:
-                job: ipmi_exporter
-              targets:
+            - targets:
               - 192.168.1.116
     grafana:
       enabled: false
