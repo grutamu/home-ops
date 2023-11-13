@@ -127,7 +127,7 @@ data:
             scrape_interval: 1m
             scrape_timeout: 30s
             metrics_path: /ipmi
-            scheme: https
+            scheme: http
             relabel_configs:
             - source_labels: [__address__]
               separator: ;
@@ -144,7 +144,7 @@ data:
             - separator: ;
               regex: .*
               target_label: __address__
-              replacement: ipmi-exporter.calzone.zone
+              replacement: ipmi-exporter:9290
               action: replace
             static_configs:
             - labels:
