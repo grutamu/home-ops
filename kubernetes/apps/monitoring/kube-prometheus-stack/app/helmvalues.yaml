@@ -125,6 +125,8 @@ data:
             params:
               module:
               - default
+              target:
+              - __address__
             relabel_configs:
             - action: replace
               regex: (.*)
