@@ -13,7 +13,7 @@ resource "proxmox_vm_qemu" "k3s" {
     disk {
         size = "20G"
         type = "scsi"
-        storage = "synologyNAS"
+        storage = "truenas-ssd"
         ssd = 1
         discard = "on"
         backup = true
