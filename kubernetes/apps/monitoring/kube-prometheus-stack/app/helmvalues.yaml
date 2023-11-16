@@ -122,30 +122,37 @@ data:
                   storage: 10Gi
         additionalScrapeConfigs:
           - job_name: ipmi
+            metrics_path: /ipmi
+            params:
+              module:
+              - default
+            relabel_configs:
+            - action: replace
+              regex: (.*)
+              replacement: ${1}
+              separator: ;
+              source_labels:
+              - __address__
+              target_label: __param_target
+            - action: replace
+              regex: (.*)
+              replacement: ${1}
+              separator: ;
+              source_labels:
+              - __param_target
+              target_label: instance
+            - action: replace
+              regex: .*
+              replacement: ipmi-exporter:9290
+              separator: ;
+              target_label: __address__
+            scheme: http
             scrape_interval: 1m
             scrape_timeout: 30s
-            metrics_path: /ipmi
-            scheme: http
-            relabel_configs:
-            - source_labels: [__address__]
-              separator: ;
-              regex: (.*)
-              target_label: __param_target
-              replacement: ${1}
-              action: replace
-            - source_labels: [__param_target]
-              separator: ;
-              regex: (.*)
-              target_label: instance
-              replacement: ${1}
-              action: replace
-            - separator: ;
-              regex: .*
-              target_label: __address__
-              replacement: ipmi-exporter:9290
-              action: replace
             static_configs:
-            - targets:
+            - labels:
+                job: ipmi_exporter
+              targets:
               - 192.168.1.116
     grafana:
       enabled: false
