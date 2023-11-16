@@ -37,6 +37,7 @@ spec:
               tag: v1.7.0
             args:
               - --config.file=/config/config.yml
+              - --log.level=debug
             resources:
               requests:
                 cpu: 5m
