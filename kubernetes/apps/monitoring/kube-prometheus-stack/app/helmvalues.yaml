@@ -122,7 +122,7 @@ data:
                   storage: 10Gi
         additionalScrapeConfigs:
           - job_name: ipmi
-            metrics_path: /ipmi
+            metrics_path: /metrics
             params:
               module:
               - default
@@ -146,6 +146,11 @@ data:
               replacement: ipmi-exporter:9290
               separator: ;
               target_label: __address__
+            - action: replace
+              regex: .*
+              replacement: /ipmi
+              separator: ;
+              target_label: __metrics_path__
             scheme: http
             scrape_interval: 1m
             scrape_timeout: 30s
