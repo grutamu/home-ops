@@ -28,3 +28,11 @@ modules:
                 - ipmi
                 - chassis
                 - dcmi
+                collector_cmd:
+                        ipmi: sudo
+                        sel: sudo
+                custom_args:
+                        ipmi:
+                        - "ipmimonitoring"
+                        sel:
+                        - "ipmi-sel"
