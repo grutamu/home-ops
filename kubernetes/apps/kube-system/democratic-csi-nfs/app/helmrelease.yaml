@@ -1,0 +1,97 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: democratic-csi-nfs
+  namespace: kube-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: csi-driver-nfs
+      version: v4.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: csi-driver-nfs
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    csiDriver:
+      # should be globally unique for a given cluster
+      name: "org.democratic-csi.nfs"
+
+    storageClasses:
+    - name: truenas-nfs-csi
+      defaultClass: false
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      parameters:
+        fsType: nfs
+
+      mountOptions:
+      - noatime
+      - nfsvers=4
+      secrets:
+        provisioner-secret:
+        controller-publish-secret:
+        node-stage-secret:
+        node-publish-secret:
+        controller-expand-secret:
+
+    driver:
+      config:
+        driver: freenas-nfs
+        instance_id:
+        httpConnection:
+          protocol: https
+          host: truenas.calzone.zone
+          port: 443
+          username:
+            tokenSecretRef:
+              name: democratic-csi-nfs-secret
+              key: truenas-username
+          password:
+            tokenSecretRef:
+              name: democratic-csi-nfs-secret
+              key: truenas-password
+          allowInsecure: true
+        sshConnection:
+          host: truenas.calzone.zone
+          port: 22
+          username:
+            tokenSecretRef:
+              name: democratic-csi-nfs-secret
+              key: truenas-username
+          password:
+            tokenSecretRef:
+              name: democratic-csi-nfs-secret
+              key: truenas-password
+
+        zfs:
+          datasetParentName: /mnt/zfs-ssd-pool/k8s-storage
+          detachedSnapshotsDatasetParentName: /mnt/zfs-ssd-pool/snapshots
+          datasetEnableQuotas: true
+          datasetEnableReservation: false
+          datasetPermissionsMode: "0777"
+          datasetPermissionsUser: root
+          datasetPermissionsGroup: wheel
+        nfs:
+          shareHost: truenas.calzone.zone
+          shareAlldirs: false
+          shareAllowedHosts: []
+          shareAllowedNetworks: []
+          shareMaprootUser: root
+          shareMaprootGroup: wheel
+          shareMapallUser: ""
+          shareMapallGroup: ""
