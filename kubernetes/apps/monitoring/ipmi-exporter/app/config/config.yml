@@ -28,8 +28,3 @@ modules:
                 - ipmi
                 - chassis
                 - dcmi
-                custom_args:
-                        ipmi:
-                        - "ipmimonitoring"
-                        sel:
-                        - "ipmi-sel"
