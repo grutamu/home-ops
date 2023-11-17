@@ -60,6 +60,7 @@ spec:
           username: root
           apiKey: 1-eYFWdA2IG8XUjIjGuCQ9xQn82u8DCurUwncSDU2kAZuX6u4gWzTksO06sbNBiA0T
           allowInsecure: true
+          apiVersion: 2
         sshConnection:
           host: 192.168.99.221
           port: 22
