@@ -9,4 +9,3 @@ resources:
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
   - ./external-secrets/ks.yaml
-  - ./csi-driver-nfs/ks.yaml
