@@ -9,7 +9,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: democratic-csi/democratic-csi
+      chart: democratic-csi
       version: 0.14.2
       sourceRef:
         kind: HelmRepository
