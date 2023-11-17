@@ -9,11 +9,11 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: csi-driver-nfs
-      version: v4.3.0
+      chart: democratic-csi/democratic-csi
+      version: 0.14.2
       sourceRef:
         kind: HelmRepository
-        name: csi-driver-nfs
+        name: democratic-csi
         namespace: flux-system
   maxHistory: 2
   install:
@@ -31,7 +31,7 @@ spec:
       name: "org.democratic-csi.nfs"
 
     storageClasses:
-    - name: truenas-nfs-csi
+    - name: truenas-nfs
       defaultClass: false
       reclaimPolicy: Delete
       volumeBindingMode: Immediate

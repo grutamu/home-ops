@@ -20,3 +20,4 @@ resources:
   - ./weave-gitops.yaml
   - ./external-secrets.yaml
   - ./cloudnative-pg.yaml
+  - ./democratic-csi.yaml
