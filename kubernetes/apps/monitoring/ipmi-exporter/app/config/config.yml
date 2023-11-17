@@ -9,8 +9,8 @@ modules:
                 # These settings are used if no module is specified, the
                 # specified module doesn't exist, or of course if
                 # module=default is specified.
-                user: "ADMIN"
-                pass: "PASSWORD"
+                user: "ipmi-exporter"
+                pass: "ZGJ2ykr*yhz8btu0rxu"
                 # The below settings correspond to driver-type, privilege-level, and
                 # session-timeout respectively, see `man 5 freeipmi.conf` (and e.g.
                 # `man 8 ipmi-sensors` for a list of driver types).
