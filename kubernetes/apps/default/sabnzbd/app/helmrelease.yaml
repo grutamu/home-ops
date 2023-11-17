@@ -40,6 +40,7 @@ spec:
               tag: 4.1.0-ls135
             env:
               TZ: America/Chicago
+              SABNZBD__PORT: &port 8080
               SABNZBD__HOST_WHITELIST_ENTRIES: >-
                 sabnzbd,
                 sabnzbd.default,
