@@ -27,28 +27,29 @@ spec:
     keepHistory: false
   values:
     csiDriver:
-      # should be globally unique for a given cluster
-      name: "org.democratic-csi.nfs"
-
+      name: "nfs"
     storageClasses:
-    - name: truenas-nfs
+    - name: nfs
       defaultClass: false
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
       allowVolumeExpansion: true
       parameters:
         fsType: nfs
-
+        detachedVolumesFromSnapshots: "false"
       mountOptions:
       - noatime
-      - nfsvers=4
+      - nfsvers=3
       secrets:
         provisioner-secret:
         controller-publish-secret:
         node-stage-secret:
         node-publish-secret:
         controller-expand-secret:
-
+    volumeSnapshotClasses:
+    - name: nfs
+      parameters:
+        detachedSnapshots: "true"
     driver:
       config:
         driver: freenas-api-nfs
@@ -57,68 +58,22 @@ spec:
           protocol: http
           host: 192.168.99.221
           port: 80
-          username: root
           apiKey: 1-eYFWdA2IG8XUjIjGuCQ9xQn82u8DCurUwncSDU2kAZuX6u4gWzTksO06sbNBiA0T
           allowInsecure: true
-          apiVersion: 2
-        # sshConnection:
-        #   host: 192.168.99.221
-        #   port: 22
-        #   username: root
-        #   privateKey: |
-        #     -----BEGIN OPENSSH PRIVATE KEY-----
-        #     b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
-        #     NhAAAAAwEAAQAAAYEAz7SjjcMAWnMsshZAtlDTlPXkQpUh/Q/MaY8dUWZYgke2ioJj4d10
-        #     VVZVl8ByBypa7YnRltlIrWj7n9ALvtjQ3a4R6RyybTdkDg9Uq5L6PUGE0xv4e57+ANumWx
-        #     pDbFAqjDtKlDsvqOVyTmMTUy8WR6xozoKYgHuW96KI+MAS62K3Rb7pQS3Qk7owDuy8KUZH
-        #     OkxqFTD3w8okPy05lSy355aZw3qDl9yT5pu8vIMPQ2AOofBLMfst2EEDtmNL8IeYereJPB
-        #     Sr9K1G7fw+cmK+ao158+bOs/EdBUCDdlZJ+dhdfXVpWLu+uR6oTnQcvrtmKI3EO2EQSnP5
-        #     KCD1J73AVSD4cXc/S7Pm6BcyqQUqie+xgPzYqtHAswj65D0rnYzzw4X+oyB+NRDwb/J32j
-        #     Qc0fDz7e8ygxZXBY7GO6YTyrggFpy7m4wSzaXzT6HhN1yt2p5IAa+DagXdOIAVtoQN13cc
-        #     V+l55flPtEMvBeDZ28Uydl76UkVchQ5ZJiMPFU9PAAAFkLvyxzm78sc5AAAAB3NzaC1yc2
-        #     EAAAGBAM+0o43DAFpzLLIWQLZQ05T15EKVIf0PzGmPHVFmWIJHtoqCY+HddFVWVZfAcgcq
-        #     Wu2J0ZbZSK1o+5/QC77Y0N2uEekcsm03ZA4PVKuS+j1BhNMb+Hue/gDbplsaQ2xQKow7Sp
-        #     Q7L6jlck5jE1MvFkesaM6CmIB7lveiiPjAEutit0W+6UEt0JO6MA7svClGRzpMahUw98PK
-        #     JD8tOZUst+eWmcN6g5fck+abvLyDD0NgDqHwSzH7LdhBA7ZjS/CHmHq3iTwUq/StRu38Pn
-        #     JivmqNefPmzrPxHQVAg3ZWSfnYXX11aVi7vrkeqE50HL67ZiiNxDthEEpz+Sgg9Se9wFUg
-        #     +HF3P0uz5ugXMqkFKonvsYD82KrRwLMI+uQ9K52M88OF/qMgfjUQ8G/yd9o0HNHw8+3vMo
-        #     MWVwWOxjumE8q4IBacu5uMEs2l80+h4TdcrdqeSAGvg2oF3TiAFbaEDdd3HFfpeeX5T7RD
-        #     LwXg2dvFMnZe+lJFXIUOWSYjDxVPTwAAAAMBAAEAAAGBAMybJo5sbLmtQXdBIog2gOb5ft
-        #     z0KeIvIO9PUtMv3bqgyDoTji8eRw4VmQV/RxS17ZKXtAZEjyp8A3t/p0JeNQpbAju/0Ch0
-        #     azTKd174z1duZljL8fBdQ9w2g960tXxKUE+JzMLOtvlK5VpAkPXdqbX7KddcoLvYg3P4Ab
-        #     QBCeIkgWPMV9ykNBaCT/szy3thRqMwSUQM09VkGGa/tzyzK4qQOXJuCpmbaXq/KaIN/Qgi
-        #     5OczXe+jfprMGMsfb9xGxO/TXKheYdIacL2b5NVolpqE6bx30n6g0UhrIMAbOADltNUaPe
-        #     Ux1BB41wDBY3A+Y9dTxbD2FsMg0M6CPfXltffoEK3nLc9+PXzrwBrUjqFxIFRY2MG2dulI
-        #     F5UE37TVe0wHuVksfVtjf5YQ3Pfg6gydB4BF3FQ99ohCC5auZkdEYjmMyTUFXxBrdqn2h1
-        #     eBVK85G/GBCtcpXpN52tdgPiudFT1jgiLMOHqsMnrz0UJYkvSjs6l9oVdybHeCA/SwuQAA
-        #     AMBDHXbWTHBLuRlhKfDoiIokBdL6aXIHs1IJgFzrCO2PloLow37DM+Gya47MHqE4dzD3Sn
-        #     rZHZcdV3GGR6qAWyXoil45H3QWo5l5NncCoXAF9SYtU9eedx1JTRKxjUrNj8v21BLj2E4Z
-        #     4+jAfxpYufkRDHIzbssz7rDRPNefXyvThyIqdcn93aAOTHKfqLDMwLS61WYKPzcvcVxVNI
-        #     EW7CugqhrAWRMHXE9J6N3i7teEO4dNeKkMdK6VOrBHJ0sWWxIAAADBAPV8gNJuC406C9n8
-        #     c109h2ERRYPa3kdomofpCugk6GXOCvcEX0mCrDvSS3qGkXxIfHwzwjnDG2rZeE9wZqLody
-        #     x7/GLwlwJF/tTxDVRuhtYbMrIqubGe3P24hdIurDtpPBL1c7KYwQ/XZucsI+9NTUcJo8Lo
-        #     /m2CJwi5dJ1cYqpdrwR3Ygb901pBowNwCILv8Xfp43Il7PwspkObXGd/lczr3I+HTr2fCO
-        #     QpTVp8gmxI90uQTXUSIZgkgBeZJmE54wAAAMEA2JnpBRzkkRntao+DIT31dRljDZGMXjqb
-        #     RKvIJrqM9n9dem8j0BJWZy8Phk/wlYMWUQLNLD/hHPkjEnwTxDiHCjC5x54vXUSRU+0fr3
-        #     bLtocIaHxksrzCP+BDBfHRM689BuwY+K8EhLwwLS9VobORC91nO7+rS25rEhjkqb5sqmmr
-        #     svYTZ+9hDtwdbJ1hzJlSWn0+7lBOeguNU6wBiGx4aBT5i9xxR6loiOd9Ms3U0NLhjpri6k
-        #     njkXIAxCeL2QClAAAAGXJvb3RAdHJ1ZW5hcy5jYWx6b25lLnpvbmUB
-        #     -----END OPENSSH PRIVATE KEY-----
-
         zfs:
           datasetParentName: /mnt/zfs-ssd-pool/k8s-storage
           detachedSnapshotsDatasetParentName: /mnt/zfs-ssd-pool/snapshots
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
-          datasetPermissionsUser: root
-          datasetPermissionsGroup: wheel
+          datasetPermissionsUser: 0
+          datasetPermissionsGroup: 0
         nfs:
           shareHost: 192.168.99.221
           shareAlldirs: false
           shareAllowedHosts: []
           shareAllowedNetworks: []
           shareMaprootUser: root
-          shareMaprootGroup: wheel
+          shareMaprootGroup: root
           shareMapallUser: ""
           shareMapallGroup: ""
