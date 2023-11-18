@@ -36,8 +36,8 @@ spec:
         containers:
           main:
             image:
-              repository: lscr.io/linuxserver/sabnzbd
-              tag: 4.1.0-ls135
+              repository: ghcr.io/onedr0p/sabnzbd
+              tag: 4.1.0@sha256:91f3cd6b9f1c9988af5447f464b299630706eb7f691dee857eab1487d4bb626e
             env:
               TZ: America/Chicago
               SABNZBD__PORT: &port 8080
@@ -74,9 +74,11 @@ spec:
                 memory: 12Gi
         pod:
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            fsGroup: 1000
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [10000]
     service:
       main:
         ports:
