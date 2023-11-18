@@ -103,11 +103,7 @@ spec:
         enabled: true
         existingClaim: sabnzbd
       data:
-        enabled: true
-        type: nfs
-        server: nas-01.local.calzone.zone
-        path: /volume2/media
-        mountPath: /data
+        existingClaim: media
       incomplete:
         enabled: true
         type: emptyDir
