@@ -54,7 +54,7 @@ spec:
           protocol: http
           host: 192.168.99.221
           port: 80
-          apiKey: 1-eYFWdA2IG8XUjIjGuCQ9xQn82u8DCurUwncSDU2kAZuX6u4gWzTksO06sbNBiA0T
+          apiKey: 2-6Iw9HDbTkmiRxhxTTrl0lJ9XBKjBoXAYgaXA1KzC2S7i9LRMUTyKc8ySG8SNNf0t
           allowInsecure: true
         zfs:
           datasetParentName: /mnt/zfs-ssd-pool/k8s-storage
