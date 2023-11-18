@@ -47,7 +47,7 @@ spec:
                 sabnzbd.default.svc,
                 sabnzbd.default.svc.cluster,
                 sabnzbd.default.svc.cluster.local,
-                sab.calzone.zone
+                sabnzbd.calzone.zone
             envFrom:
               - secretRef:
                   name: sabnzbd-secret
@@ -89,7 +89,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host sab.calzone.zone
+          - host: &host sabnzbd.calzone.zone
             paths:
               - path: /
                 service:
