@@ -57,8 +57,8 @@ spec:
           apiKey: 2-6Iw9HDbTkmiRxhxTTrl0lJ9XBKjBoXAYgaXA1KzC2S7i9LRMUTyKc8ySG8SNNf0t
           allowInsecure: true
         zfs:
-          datasetParentName: /mnt/zfs-ssd-pool/k8s-storage
-          detachedSnapshotsDatasetParentName: /mnt/zfs-ssd-pool/snapshots
+          datasetParentName: zfs-ssd-pool/k8s-storage
+          detachedSnapshotsDatasetParentName: zfs-ssd-pool/snapshots
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
