@@ -21,7 +21,7 @@ spec:
     server: nas-01.local.calzone.zone
     path: /volume2/media
   mountOptions:
-    - nfsvers=4
+    - nfsvers=4.1
     - noatime
 ---
 apiVersion: v1
