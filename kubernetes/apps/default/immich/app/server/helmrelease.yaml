@@ -65,6 +65,12 @@ spec:
         enabled: true
         existingClaim: immich
         mountPath: /usr/src/app/upload
+      synology:
+        enabled: true
+        type: nfs
+        server: nas-01.local.calzone.zone
+        path: /volume2/home
+        mountPath: /synology
       geocoding-dump:
         enabled: true
         type: emptyDir
