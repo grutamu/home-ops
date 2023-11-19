@@ -44,6 +44,8 @@ spec:
           name: *configMap
       - secretRef:
           name: *secret
+    env:
+      IMMICH_API_URL_EXTERNAL: /api
     service:
       main:
         ports:
