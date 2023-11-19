@@ -71,8 +71,8 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /usr/src/app/.transformers_cache
-    nodeSelector:
-      intel.feature.node.kubernetes.io/gpu: "true"
+    #nodeSelector:
+      #intel.feature.node.kubernetes.io/gpu: "true"
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
