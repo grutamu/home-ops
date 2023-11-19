@@ -69,7 +69,7 @@ spec:
         enabled: true
         type: nfs
         server: 192.168.1.248
-        path: /volume2/home
+        path: /volume2/homes
         mountPath: /synology
       geocoding-dump:
         enabled: true
