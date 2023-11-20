@@ -6,3 +6,4 @@ resources:
   - ./media-pvc.yaml
   - ./sabnzbd/ks.yaml
   - ./immich/ks.yaml
+  - ./overseerr/ks.yaml
