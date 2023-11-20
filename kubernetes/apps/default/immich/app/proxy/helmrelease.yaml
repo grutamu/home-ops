@@ -61,9 +61,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: external
+        className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.calzone.zone
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
           - host: &host photos.calzone.zone
             paths:
