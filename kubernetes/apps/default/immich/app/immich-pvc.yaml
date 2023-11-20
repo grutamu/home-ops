@@ -19,7 +19,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: truenas.calzone.zone
-    path: /mnt/zfs-ssd-pool/photos
+    path: /mnt/hdd-pool/photos
   mountOptions:
     - nfsvers=4.2
     - nconnect=8
