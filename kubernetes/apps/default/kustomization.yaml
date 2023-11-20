@@ -7,3 +7,4 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./immich/ks.yaml
   - ./overseerr/ks.yaml
+  - ./radarr/ks.yaml
