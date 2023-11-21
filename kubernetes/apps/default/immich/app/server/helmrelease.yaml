@@ -89,17 +89,17 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: external.calzone.zone
         hosts:
-        - host: &host photos.calzone.zone
-          paths:
-          - path: /
-            service:
-              name: main
-              port: http
+          - host: &host photos.calzone.zone
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
         tls:
-        - hosts:
-          - *host
+          - hosts:
+              - *host
     persistence:
       library:
         enabled: true
