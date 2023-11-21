@@ -102,7 +102,7 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd
-      data:
+      media:
         existingClaim: media
       incomplete:
         enabled: true

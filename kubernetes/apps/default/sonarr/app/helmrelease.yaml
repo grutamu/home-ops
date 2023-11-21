@@ -48,8 +48,7 @@ spec:
               repository: ghcr.io/onedr0p/sonarr-develop
               tag: 4.0.0.731@sha256:6841fcd99f0cc4e7e374b697ad82bc0fd70cdfaed8dca6b13b0e488bee2d5036
             env:
-              TZ: America/New_York
-              PUSHOVER_DEBUG: "false"
+              TZ: America/Chicago
               SONARR__AUTHENTICATION_METHOD: External
               SONARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               SONARR__INSTANCE_NAME: Sonarr
@@ -95,7 +94,7 @@ spec:
         enabled: true
         className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.devbu.io"
+          - host: &host "{{ .Release.Name }}.calzone.zone"
             paths:
               - path: /
                 service:
@@ -108,13 +107,5 @@ spec:
       config:
         enabled: true
         existingClaim: sonarr-config
-      pushover-notify:
-        type: configMap
-        name: sonarr-configmap
-        defaultMode: 0775
-        globalMounts:
-          - path: /scripts/pushover-notify.sh
-            subPath: pushover-notify.sh
-            readOnly: true
       media:
         existingClaim: media
