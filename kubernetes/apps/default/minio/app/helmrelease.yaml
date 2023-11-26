@@ -132,4 +132,5 @@ spec:
       config:
         enabled: true
         existingClaim: minio
-        mountPath: /data
+        globalMounts:
+          - path: /data
