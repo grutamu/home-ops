@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.2.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -31,34 +31,49 @@ spec:
     - name: redis
       namespace: database
   values:
-    controller:
-      strategy: RollingUpdate
-      annotations:
-        configmap.reloader.stakater.com/reload: &configMap immich-configmap
-        secret.reloader.stakater.com/reload: &secret immich-secret
-    image:
-      repository: ghcr.io/immich-app/immich-server
-      tag: v1.88.2
-    args: ["start-microservices.sh"]
-    envFrom:
-      - configMapRef:
-          name: *configMap
-      - secretRef:
-          name: *secret
-    service:
+    controllers:
       main:
-        enabled: false
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups: [44, 105]
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 15.5
+              pullPolicy: IfNotPresent
+            envFrom: &envFrom
+            - configMapRef:
+                name: &configMap immich-configmap
+            - secretRef:
+                name: &secret immich-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v1.88.2
+            args: ["start-microservices.sh"]
+            env:
+              IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
+            envFrom: *envFrom
+            resources:
+              requests:
+                #gpu.intel.com/i915: 1
+                cpu: 100m
+                memory: 250Mi
+              limits:
+                #gpu.intel.com/i915: 1
+                memory: 1Gi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
     persistence:
       library:
         enabled: true
         existingClaim: immich
-        mountPath: /usr/src/app/upload
+        globalMounts:
+          - path: *mediaLocation
       geocoding-dump:
         enabled: true
         type: emptyDir
@@ -71,20 +86,4 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /usr/src/app/.transformers_cache
-    #nodeSelector:
-      #intel.feature.node.kubernetes.io/gpu: "true"
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
-    resources:
-      requests:
-        #gpu.intel.com/i915: 1
-        cpu: 100m
-        memory: 1000Mi
-      limits:
-        #gpu.intel.com/i915: 1
-        memory: 6000Mi
+
