@@ -1,0 +1,135 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minio
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: quay.io/minio/minio
+              tag: RELEASE.2023-01-25T00-19-54Z
+            env:
+              TZ: America/Chicago
+              MINIO_UPDATE: "off"
+              MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+              MINIO_PROMETHEUS_JOB_ID: minio
+              MINIO_BROWSER_REDIRECT_URL: https://minio.calzone.zone
+              MINIO_SERVER_URL: https://s3.calzone.zone
+              MINIO_API_CORS_ALLOW_ORIGIN: https://minio.calzone.zone,https://s3.calzone.zone
+            envFrom:
+              - secretRef:
+                  name: minio-secret
+            args: ["server", "/data", "--console-address", ":9001"]
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /minio/health/live
+                    port: *api-port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                memory: 100Mi
+                cpu: 100m
+              limits:
+                memory: 750Mi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      main:
+        ports:
+          http:
+              port: &console-port 9001
+          api:
+            enabled: true
+            port: &api-port 9000
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - port: api
+            scheme: http
+            path: /minio/v2/metrics/cluster
+            interval: 1m
+            scrapeTimeout: 10s
+            bearerTokenSecret:
+              name: minio-secret
+              key: MINIO_PROMETHEUS_TOKEN
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        hosts:
+          - host: &console-host "{{ .Release.Name }}.calzone.zone"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: *console-port
+        tls:
+          - hosts:
+              - *console-host
+      s3:
+        enabled: true
+        className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+          nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            chunked_transfer_encoding off;
+        hosts:
+          - host: s3.calzone.zone"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: *api-port
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: minio
+        mountPath: /data
