@@ -21,3 +21,4 @@ resources:
   - ./external-secrets.yaml
   - ./cloudnative-pg.yaml
   - ./democratic-csi.yaml
+  - ./backube.yaml
