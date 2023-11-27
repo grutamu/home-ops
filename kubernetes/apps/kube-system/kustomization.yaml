@@ -10,5 +10,3 @@ resources:
   - ./reloader/ks.yaml
   - ./external-secrets/ks.yaml
   - ./democratic-csi-nfs/ks.yaml
-  - ./snapshot-controller/ks.yaml
-
