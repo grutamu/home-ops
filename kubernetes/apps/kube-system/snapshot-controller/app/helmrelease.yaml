@@ -27,19 +27,16 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: rook-ceph-operator
-      namespace: rook-ceph
   values:
     controller:
-      volumeSnapshotClasses:
-        - name: local-path-filesystem
-          driver: local-path-provisioner
-          annotations:
-            snapshot.storage.kubernetes.io/is-default-class: "false"
-          parameters:
-            csi.storage.k8s.io/snapshotter-secret-name: rook-csi-cephfs-provisioner
-            csi.storage.k8s.io/snapshotter-secret-namespace: rook-ceph
-          deletionPolicy: Delete
+      # volumeSnapshotClasses:
+      #   - name: local-path-filesystem
+      #     driver: local-path-provisioner
+      #     annotations:
+      #       snapshot.storage.kubernetes.io/is-default-class: "false"
+      #     parameters:
+      #       csi.storage.k8s.io/snapshotter-secret-name: rook-csi-cephfs-provisioner
+      #       csi.storage.k8s.io/snapshotter-secret-namespace: rook-ceph
+      #     deletionPolicy: Delete
       serviceMonitor:
         create: true
