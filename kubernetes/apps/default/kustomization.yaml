@@ -9,4 +9,4 @@ resources:
   - ./overseerr/ks.yaml
   - ./radarr/ks.yaml
   - ./minio/ks.yaml
-  - ./recyclarr/ks.yaml
+  #- ./recyclarr/ks.yaml
