@@ -48,7 +48,7 @@ spec:
     manual: restore-once
   restic:
     repository: overseerr-restic-secret
-    copyMethod: Clone
+    copyMethod: Direct
     cacheCapacity: 8Gi
     storageClassName: local-path
     accessModes: ["ReadWriteOnce"]
@@ -65,7 +65,7 @@ spec:
   trigger:
     schedule: "0 7 * * *"
   restic:
-    copyMethod: Clone
+    copyMethod: Direct
     pruneIntervalDays: 7
     repository: overseerr-restic-secret
     cacheCapacity: 8Gi
