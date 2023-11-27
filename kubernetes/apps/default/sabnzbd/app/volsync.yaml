@@ -3,19 +3,19 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: sabznbd-restic
+  name: sabnzbd-restic
   namespace: default
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
     name: onepassword-connect
   target:
-    name: sabznbd-restic-secret
+    name: sabnzbd-restic-secret
     creationPolicy: Owner
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/sabznbd'
+        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/sabnzbd'
         RESTIC_PASSWORD: '{{ .RESTIC_PASSWORD }}'
         AWS_ACCESS_KEY_ID: '{{ .AWS_ACCESS_KEY_ID }}'
         AWS_SECRET_ACCESS_KEY: '{{ .AWS_SECRET_ACCESS_KEY }}'
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabznbd
+  name: sabnzbd
   namespace: default
 spec:
   accessModes: ["ReadWriteOnce"]
@@ -39,7 +39,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: sabznbd-rdst
+  name: sabnzbd-rdst
   namespace: default
   annotations:
     kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
@@ -47,7 +47,7 @@ spec:
   trigger:
     manual: restore-once
   restic:
-    repository: sabznbd-restic-secret
+    repository: sabnzbd-restic-secret
     copyMethod: Direct
     cacheCapacity: 8Gi
     storageClassName: local-path
@@ -58,16 +58,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: sabznbd-rsrc
+  name: sabnzbd-rsrc
   namespace: default
 spec:
-  sourcePVC: sabznbd
+  sourcePVC: sabnzbd
   trigger:
     schedule: "0 7 * * *"
   restic:
     copyMethod: Direct
     pruneIntervalDays: 7
-    repository: sabznbd-restic-secret
+    repository: sabnzbd-restic-secret
     cacheCapacity: 8Gi
     storageClassName: local-path
     accessModes: ["ReadWriteOnce"]
