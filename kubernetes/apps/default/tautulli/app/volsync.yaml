@@ -30,14 +30,10 @@ metadata:
   namespace: default
 spec:
   accessModes: ["ReadWriteOnce"]
-  dataSourceRef:
-    kind: ReplicationDestination
-    apiGroup: volsync.backube
-    name: tautulli-rdst
   resources:
     requests:
-      storage: 5Gi # must match the ReplicationDestination `.spec.capacity` below
-  storageClassName: ceph-block
+      storage: 15Gi
+  storageClassName: local-path
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationdestination_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
@@ -52,14 +48,10 @@ spec:
     manual: restore-once
   restic:
     repository: tautulli-restic-secret
-    copyMethod: Snapshot
-    volumeSnapshotClassName: csi-ceph-blockpool
-    cacheStorageClassName: local-path
-    cacheAccessModes: ["ReadWriteOnce"]
-    cacheCapacity: 8Gi
-    storageClassName: ceph-block
+    copyMethod: Direct
+    storageClassName: local-path
     accessModes: ["ReadWriteOnce"]
-    capacity: 5Gi # must match the PersistentVolumeClaim `.resources.requests.storage` size above
+    capacity: 15Gi # must match the PersistentVolumeClaim `.resources.requests.storage` size above
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationsource_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
@@ -72,14 +64,10 @@ spec:
   trigger:
     schedule: "0 7 * * *"
   restic:
-    copyMethod: Snapshot
+    copyMethod: Direct
     pruneIntervalDays: 7
     repository: tautulli-restic-secret
-    volumeSnapshotClassName: csi-ceph-blockpool
-    cacheCapacity: 8Gi
-    cacheStorageClassName: local-path
-    cacheAccessModes: ["ReadWriteOnce"]
-    storageClassName: ceph-block
+    storageClassName: local-path
     accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
       runAsUser: 568
