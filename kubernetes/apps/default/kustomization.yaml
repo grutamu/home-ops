@@ -11,3 +11,4 @@ resources:
   - ./minio/ks.yaml
   - ./recyclarr/ks.yaml
   - ./prowlarr/ks.yaml
+  - ./sonarr/ks.yaml
