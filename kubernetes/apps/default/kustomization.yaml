@@ -10,3 +10,4 @@ resources:
   - ./radarr/ks.yaml
   - ./minio/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./prowlarr/ks.yaml
