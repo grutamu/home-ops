@@ -50,7 +50,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.88.2
+              tag: v1.89.0
             args: ["start-server.sh"]
             env:
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
@@ -108,10 +108,6 @@ spec:
         existingClaim: immich
         globalMounts:
           - path: *mediaLocation
-      geocoding-dump:
-        enabled: true
-        type: emptyDir
-        mountPath: /usr/src/app/.reverse-geocoding-dump
       transformers-cache:
         enabled: true
         type: emptyDir

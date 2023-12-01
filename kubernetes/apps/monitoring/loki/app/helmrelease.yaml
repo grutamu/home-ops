@@ -78,7 +78,6 @@ spec:
           enable_api: true
           enable_alertmanager_v2: true
           alertmanager_url: http://alertmanager-operated.monitoring.svc.cluster.local:9093
-          # alertmanager_url: http://vmalertmanager-victoria-metrics.monitoring.svc.cluster.local:9093
           storage:
             type: local
             local:
@@ -168,18 +167,18 @@ spec:
       enabled: false
   valuesFrom:
     - targetPath: loki.structuredConfig.common.storage.s3.bucketnames
-      kind: ConfigMap
-      name: loki-bucket-v2
+      kind: Secret
+      name: loki-secret
       valuesKey: BUCKET_NAME
     - targetPath: loki.structuredConfig.common.storage.s3.endpoint
-      kind: ConfigMap
-      name: loki-bucket-v2
+      kind: Secret
+      name: loki-secret
       valuesKey: BUCKET_HOST
     - targetPath: loki.structuredConfig.common.storage.s3.access_key_id
       kind: Secret
-      name: loki-bucket-v2
+      name: loki-secret
       valuesKey: AWS_ACCESS_KEY_ID
     - targetPath: loki.structuredConfig.common.storage.s3.secret_access_key
       kind: Secret
-      name: loki-bucket-v2
+      name: loki-secret
       valuesKey: AWS_SECRET_ACCESS_KEY

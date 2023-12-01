@@ -38,7 +38,7 @@ spec:
         secret.reloader.stakater.com/reload: &secret immich-secret
     image:
       repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.88.2
+      tag: v1.89.0
     envFrom:
       - configMapRef:
           name: *configMap
@@ -63,10 +63,6 @@ spec:
         enabled: true
         existingClaim: immich-machine-learning-cache
         mountPath: /cache
-      geocoding-dump:
-        enabled: true
-        type: emptyDir
-        mountPath: /usr/src/app/.reverse-geocoding-dump
       transformers-cache:
         enabled: true
         type: emptyDir
