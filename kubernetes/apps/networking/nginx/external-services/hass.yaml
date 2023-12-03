@@ -29,6 +29,11 @@ kind: Ingress
 metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: external.calzone.zone
+    nginx.ingress.kubernetes.io/server-snippets: |
+      location / {
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        }
   name: hass
   namespace: networking
 spec:
