@@ -50,7 +50,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.90.0
+              tag: v1.90.2
             args: ["start-microservices.sh"]
             env:
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
