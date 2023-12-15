@@ -14,14 +14,14 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  bootstrap:
-    initdb:
-      import:
-        type: microservice
-        databases:
-          - immich
-        source:
-          externalCluster: postgres # name of cluster where existing immich data lives
+  # bootstrap:
+  #   initdb:
+  #     import:
+  #       type: microservice
+  #       databases:
+  #         - immich
+  #       source:
+  #         externalCluster: postgres # name of cluster where existing immich data lives
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
@@ -52,12 +52,12 @@ spec:
   #         name: cloudnative-pg-secret
   #         key: aws-secret-access-key
   # # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: postgres
-      connectionParameters:
-        host: postgres-ro.database.svc.cluster.local
-        user: postgres
-        dbname: immich
-      password:
-        name: cloudnative-pg-secret
-        key: password
+  # externalClusters:
+  #   - name: postgres
+  #     connectionParameters:
+  #       host: postgres-ro.database.svc.cluster.local
+  #       user: postgres
+  #       dbname: immich
+  #     password:
+  #       name: cloudnative-pg-secret
+  #       key: password
