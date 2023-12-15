@@ -1,0 +1,61 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pgvector1
+spec:
+  instances: 3
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14-v0.1.10
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 20Gi
+    storageClass: local-path
+  superuserSecret:
+    name: cloudnative-pg-secret
+  enableSuperuserAccess: true
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - immich
+        source:
+          externalCluster: postgres # name of cluster where existing immich data lives
+  postgresql:
+    parameters:
+      max_connections: "600"
+      shared_buffers: 512MB
+  resources:
+    requests:
+      memory: "2Gi"
+      cpu: "500m"
+    limits:
+      memory: "4Gi"
+  monitoring:
+    enablePodMonitor: true
+  # backup:
+  #   retentionPolicy: 30d
+  #   barmanObjectStore:
+  #     wal:
+  #       compression: bzip2
+  #       maxParallel: 8
+  #     destinationPath: s3://postgres/
+  #     endpointURL: http://minio.default.svc.cluster.local:9000
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: cloudnative-pg-secret
+  #         key: aws-access-key-id
+  #       secretAccessKey:
+  #         name: cloudnative-pg-secret
+  #         key: aws-secret-access-key
+  # # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: postgres
+      connectionParameters:
+        host: postgres-ro.database.svc.cluster.local
+        user: postgres
+        dbname: immich
+      password:
+        name: cloudnative-pg-secret
+        key: password
