@@ -6,7 +6,7 @@ metadata:
   name: pgvector1
 spec:
   instances: 3
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14-v0.1.10
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
