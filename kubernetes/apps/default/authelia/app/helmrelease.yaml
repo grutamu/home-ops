@@ -114,14 +114,14 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: external.devbu.io
+          external-dns.alpha.kubernetes.io/target: external.calzone.zone
           nginx.ingress.kubernetes.io/configuration-snippet: |
             add_header Cache-Control "no-store";
             add_header Pragma "no-cache";
             add_header X-Frame-Options "SAMEORIGIN";
             add_header X-XSS-Protection "1; mode=block";
         hosts:
-          - host: &host auth.devbu.io
+          - host: &host auth.calzone.zone
             paths:
               - path: /
                 service:

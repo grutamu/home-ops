@@ -14,3 +14,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
   - ./lldap/ks.yaml
+  - ./authelia/ks.yaml

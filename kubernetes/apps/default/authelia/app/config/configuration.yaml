@@ -8,13 +8,13 @@ authentication_backend:
     implementation: custom
     timeout: 5s
     start_tls: false
-    base_dn: dc=home,dc=arpa
-    additional_users_dn: ou=people
+    base_dn: dc=calzone,dc=zone
+    additional_users_dn: ou=users
     users_filter: (&({username_attribute}={input})(objectClass=person))
     additional_groups_dn: ou=groups
     groups_filter: (member={dn})
     group_search_mode: filter
-    user: uid=admin,ou=people,dc=home,dc=arpa
+    user: uid=admin,ou=users,dc=calzone,dc=zone
     password: password
     attributes:
       username: uid
@@ -29,10 +29,10 @@ session:
   expiration: 1h
   remember_me: 1M
   cookies:
-    - name: devbu_session
-      domain: devbu.io
-      authelia_url: https://auth.devbu.io
-      default_redirection_url: https://devbu.io
+    - name: calzonezone_session
+      domain: calzone.zone
+      authelia_url: https://auth.calzone.zone
+      default_redirection_url: https://calzone.zone
   redis:
     host: redis.database.svc.cluster.local
     database_index: 14
@@ -83,14 +83,5 @@ identity_providers:
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://grafana.devbu.io/login/generic_oauth"]
-        userinfo_signed_response_alg: none
-      - id: miniflux
-        description: Miniflux
-        secret: "${MINIFLUX_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: two_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://miniflux.devbu.io/oauth2/oidc/callback"]
+        redirect_uris: ["https://grafana.calzone.zone/login/generic_oauth"]
         userinfo_signed_response_alg: none
