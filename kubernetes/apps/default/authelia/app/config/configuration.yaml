@@ -14,7 +14,7 @@ authentication_backend:
     additional_groups_dn: ou=groups
     groups_filter: (member={dn})
     group_search_mode: filter
-    user: uid=4a8cc46b-b1c1-3b94-94bd-0139b7fa061b,ou=users,dc=calzone,dc=zone
+    user: uid=admin,ou=users,dc=calzone,dc=zone
     password: password
     attributes:
       username: uid
