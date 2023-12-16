@@ -53,6 +53,19 @@ spec:
             env:
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
             envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: 3002
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             resources:
               requests:
                 #gpu.intel.com/i915: 1
