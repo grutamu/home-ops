@@ -110,3 +110,8 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /usr/src/app/.transformers_cache
+      config:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /.config
