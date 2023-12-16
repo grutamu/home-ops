@@ -16,7 +16,6 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-
   values:
     controllers:
       main:
@@ -33,7 +32,6 @@ spec:
                 memory: 256M
               limits:
                 memory: 256M
-
     service:
       main:
         ports:
