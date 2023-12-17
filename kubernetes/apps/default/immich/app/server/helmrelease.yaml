@@ -72,8 +72,8 @@ spec:
               requests:
                 cpu: 100m
                 memory: 250Mi
-              limits:
-                memory: 1Gi
+              # limits:
+              #   memory: 1Gi
         pod:
           securityContext:
             runAsUser: 568
@@ -109,7 +109,8 @@ spec:
       transformers-cache:
         enabled: true
         type: emptyDir
-        mountPath: /usr/src/app/.transformers_cache
+        globalMounts:
+          - path: /usr/src/app/.transformers_cache
       config:
         enabled: true
         type: emptyDir

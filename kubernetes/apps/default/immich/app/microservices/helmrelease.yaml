@@ -80,9 +80,11 @@ spec:
       geoname-dump:
         enabled: true
         type: emptyDir
-        mountPath: /usr/src/app/node_modules/local-reverse-geocoder/geonames_dump
+        globalMounts:
+          - path: /usr/src/app/node_modules/local-reverse-geocoder/geonames_dump
       transformers-cache:
         enabled: true
         type: emptyDir
-        mountPath: /usr/src/app/.transformers_cache
+        globalMounts:
+          - path: /usr/src/app/.transformers_cache
 
