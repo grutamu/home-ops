@@ -19,7 +19,7 @@
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
-  "schedule": ["on saturday"],
+  "schedule": ["before 3am"],
   "automergeSchedule": ["before 4am"],
   "flux": {
     "fileMatch": [
