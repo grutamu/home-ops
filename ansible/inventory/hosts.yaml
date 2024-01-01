@@ -12,14 +12,14 @@ kubernetes:
         k3s-03:
           ansible_user: zbardwell
           ansible_host: 192.168.99.73
-    worker:
-      hosts:
-        k3s-04:
-          ansible_user: zbardwell
-          ansible_host: 192.168.99.74
-        k3s-05:
-          ansible_user: zbardwell
-          ansible_host: 192.168.99.75
-        k3s-06:
-          ansible_user: zbardwell
-          ansible_host: 192.168.99.76
+    # worker:
+    #   hosts:
+    #     k3s-04:
+    #       ansible_user: zbardwell
+    #       ansible_host: 192.168.99.74
+    #     k3s-05:
+    #       ansible_user: zbardwell
+    #       ansible_host: 192.168.99.75
+    #     k3s-06:
+    #       ansible_user: zbardwell
+    #       ansible_host: 192.168.99.76
