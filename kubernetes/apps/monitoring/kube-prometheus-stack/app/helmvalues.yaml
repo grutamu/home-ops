@@ -62,9 +62,9 @@ data:
     kubeControllerManager:
       enabled: true
       endpoints:
-        - 192.168.99.71
-        - 192.168.99.72
-        - 192.168.99.73
+        - 192.168.99.21
+        - 192.168.99.22
+        - 192.168.99.23
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate labels provided by k3s
@@ -74,9 +74,9 @@ data:
     kubeEtcd:
       enabled: true
       endpoints:
-        - 192.168.99.71
-        - 192.168.99.72
-        - 192.168.99.73
+        - 192.168.99.21
+        - 192.168.99.22
+        - 192.168.99.23
     kubeScheduler:
       enabled: true
       endpoints:
