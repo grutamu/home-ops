@@ -5,8 +5,8 @@ resources:
   - ./namespace.yaml
   - ./media-pvc.yaml
   - ./sabnzbd/ks.yaml
-  # - ./immich/ks.yaml
-  # - ./overseerr/ks.yaml
+  - ./immich/ks.yaml
+  - ./overseerr/ks.yaml
   - ./radarr/ks.yaml
   - ./minio/ks.yaml
   - ./recyclarr/ks.yaml
