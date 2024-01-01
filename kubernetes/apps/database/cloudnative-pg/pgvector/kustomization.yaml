@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: database
 resources:
   - ./pgvector1.yaml
-  #- ./scheduledbackup.yaml
+  - ./scheduledbackup.yaml
   - ./service.yaml
