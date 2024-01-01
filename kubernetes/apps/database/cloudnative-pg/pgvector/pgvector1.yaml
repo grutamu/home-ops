@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: pgvector1
+  name: pgvector2
 spec:
   instances: 3
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
@@ -14,14 +14,9 @@ spec:
   superuserSecret:
     name: cloudnative-pg-secret
   enableSuperuserAccess: true
-  # bootstrap:
-  #   initdb:
-  #     import:
-  #       type: microservice
-  #       databases:
-  #         - immich
-  #       source:
-  #         externalCluster: postgres # name of cluster where existing immich data lives
+  bootstrap:
+    recovery:
+      source: &previousCluster pgvector1
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
@@ -51,13 +46,19 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-  # # Note: externalClusters is needed when recovering from an existing cnpg cluster
-  # externalClusters:
-  #   - name: postgres
-  #     connectionParameters:
-  #       host: postgres-ro.database.svc.cluster.local
-  #       user: postgres
-  #       dbname: immich
-  #     password:
-  #       name: cloudnative-pg-secret
-  #       key: password
+  # Note: externalClusters is needed when recovering from an existing cnpg cluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        wal:
+          compression: bzip2
+          maxParallel: 8
+        destinationPath: s3://postgres
+        endpointURL: http://minio.default.svc.cluster.local:9000
+        s3Credentials:
+          accessKeyId:
+            name: cloudnative-pg-secret
+            key: aws-access-key-id
+          secretAccessKey:
+            name: cloudnative-pg-secret
+            key: aws-secret-access-key
