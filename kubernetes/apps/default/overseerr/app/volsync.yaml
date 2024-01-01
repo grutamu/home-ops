@@ -33,7 +33,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: local-path
+  storageClassName: local-hostpath
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/volsync.backube/replicationdestination_v1alpha1.json
 apiVersion: volsync.backube/v1alpha1
@@ -50,7 +50,7 @@ spec:
     repository: overseerr-restic-secret
     copyMethod: Direct
     cacheCapacity: 8Gi
-    storageClassName: local-path
+    storageClassName: local-hostpath
     accessModes: ["ReadWriteOnce"]
     capacity: 5Gi # must match the PersistentVolumeClaim `.resources.requests.storage` size above
 ---
@@ -69,7 +69,7 @@ spec:
     pruneIntervalDays: 7
     repository: overseerr-restic-secret
     cacheCapacity: 8Gi
-    storageClassName: local-path
+    storageClassName: local-hostpath
     accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
       runAsUser: 568

@@ -54,7 +54,7 @@ spec:
     repository: home-assistant-restic-secret
     copyMethod: Snapshot
     volumeSnapshotClassName: csi-ceph-filesystem
-    cacheStorageClassName: local-path
+    cacheStorageClassName: local-hostpath
     cacheAccessModes: ["ReadWriteOnce"]
     cacheCapacity: 8Gi
     storageClassName: ceph-filesystem
@@ -77,7 +77,7 @@ spec:
     repository: home-assistant-restic-secret
     volumeSnapshotClassName: csi-ceph-filesystem
     cacheCapacity: 8Gi
-    cacheStorageClassName: local-path
+    cacheStorageClassName: local-hostpath
     cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: ceph-filesystem
     accessModes: ["ReadWriteMany"]
