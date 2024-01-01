@@ -5,11 +5,10 @@ kubernetes:
       hosts:
         prd-k3s-01:
           ansible_user: ansible
-          ansible_host: 192.168.99.71
+          ansible_host: 192.168.99.21
         prd-k3s-02:
           ansible_user: ansible
-          ansible_host: 192.168.99.72
+          ansible_host: 192.168.99.22
         prd-k3s-03:
           ansible_user: ansible
-          ansible_host: 192.168.99.73
-
+          ansible_host: 192.168.99.23
