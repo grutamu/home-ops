@@ -28,8 +28,8 @@ spec:
   dependsOn:
     - name: immich-server
       namespace: default
-    - name: redis
-      namespace: database
+    - name: immich-redis
+      namespace: default
   values:
     controllers:
       main:
