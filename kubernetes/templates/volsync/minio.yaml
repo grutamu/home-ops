@@ -57,7 +57,7 @@ spec:
     manual: restore-once
   restic:
     repository: "${APP}-volsync-secret"
-    copyMethod: Direct # must be Snapshot
+    copyMethod: Direct
     storageClassName: "${VOLSYNC_STORAGECLASS:-local-hostpath}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
