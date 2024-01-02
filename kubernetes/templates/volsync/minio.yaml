@@ -61,6 +61,7 @@ spec:
     storageClassName: "${VOLSYNC_STORAGECLASS:-local-hostpath}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
+    destinationPVC: "${APP}"
     # moverSecurityContext:
     #   runAsUser: 568
     #   runAsGroup: 568
