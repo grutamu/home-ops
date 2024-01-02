@@ -20,7 +20,7 @@
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   "schedule": ["before 3am"],
-  "automergeSchedule": ["before 4am"],
+  // "automergeSchedule": ["before 4am"],
   "flux": {
     "fileMatch": [
       "(^|/)addons/.+\\.ya?ml(\\.j2)?(\\.j2)?$",
