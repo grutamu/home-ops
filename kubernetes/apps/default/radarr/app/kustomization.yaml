@@ -5,5 +5,5 @@ kind: Kustomization
 namespace: default
 resources:
   - ./externalsecret.yaml
-  - ./volsync.yaml
   - ./helmrelease.yaml
+  - ../../../../templates/volsync
