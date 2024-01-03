@@ -6,9 +6,15 @@ kubernetes:
         prd-k3s-01:
           ansible_user: ansible
           ansible_host: 192.168.99.21
+          ceph_drives:
+            - /dev/disk/by-id/nvme-PC_SN730_NVMe_WDC_512GB_1944AF800588
         prd-k3s-02:
           ansible_user: ansible
           ansible_host: 192.168.99.22
+          ceph_drives:
+            - /dev/disk/by-id/nvme-PC_SN730_NVMe_WDC_512GB_1944B8804088
         prd-k3s-03:
           ansible_user: ansible
           ansible_host: 192.168.99.23
+          ceph_drives:
+            - /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
