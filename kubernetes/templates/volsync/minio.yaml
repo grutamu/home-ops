@@ -33,10 +33,14 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    copyMethod: "${VOLSYNC_COPYMETHOD:-Direct}"
+    copyMethod: "${VOLSYNC_COPYMETHOD:-Snapshot}"
     pruneIntervalDays: 7
     repository: "${APP}-volsync-secret"
-    storageClassName: "${VOLSYNC_STORAGECLASS:-local-hostpath}"
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-ceph-blockpool}"
+    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
+    storageClassName: "${VOLSYNC_STORAGECLASS:-ceph-block}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     moverSecurityContext:
       runAsUser: 568
@@ -57,11 +61,14 @@ spec:
     manual: restore-once
   restic:
     repository: "${APP}-volsync-secret"
-    copyMethod: Direct
-    storageClassName: "${VOLSYNC_STORAGECLASS:-local-hostpath}"
+    copyMethod: Snapshot # must be Snapshot
+    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:-csi-ceph-blockpool}"
+    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:-local-hostpath}"
+    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:-ReadWriteOnce}"]
+    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:-8Gi}"
+    storageClassName: "${VOLSYNC_STORAGECLASS:-ceph-block}"
     accessModes: ["${VOLSYNC_ACCESSMODES:-ReadWriteOnce}"]
     capacity: "${VOLSYNC_CAPACITY}"
-    destinationPVC: "${APP}"
     # moverSecurityContext:
     #   runAsUser: 568
     #   runAsGroup: 568
