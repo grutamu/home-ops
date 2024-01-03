@@ -38,7 +38,7 @@ metadata:
 spec:
   ingressClassName: internal
   rules:
-    - host: &host rook-ceph-rgw.devbu.io
+    - host: &host rook-ceph-rgw.calzone.zone
       http:
         paths:
           - backend:
