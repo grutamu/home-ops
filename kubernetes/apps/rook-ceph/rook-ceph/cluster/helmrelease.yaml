@@ -57,7 +57,7 @@ spec:
       crashCollector:
         disable: false
       dashboard:
-        enabled: false
+        enabled: enable
         urlPrefix: /
         ssl: false
       storage:
