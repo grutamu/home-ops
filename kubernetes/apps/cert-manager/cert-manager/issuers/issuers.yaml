@@ -17,6 +17,7 @@ spec:
         selector:
           dnsZones:
             - "${SECRET_DOMAIN}"
+            - local.calzone.zone
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
