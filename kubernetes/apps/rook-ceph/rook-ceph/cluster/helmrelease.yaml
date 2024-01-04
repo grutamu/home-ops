@@ -57,7 +57,7 @@ spec:
       crashCollector:
         disable: false
       dashboard:
-        enabled: true
+        enabled: false
         urlPrefix: /
         ssl: false
       storage:
@@ -95,17 +95,17 @@ spec:
         mon:
           requests:
             cpu: 1000m
-            memory: 1Gi
+            memory: 512Mi
           limits:
-            cpu: 4000m
-            memory: 4Gi
+            cpu: 2000m
+            memory: 2Gi
         osd:
           requests:
             cpu: 1000m
-            memory: 4Gi
+            memory: 512Mi
           limits:
-            cpu: 4000m
-            memory: 8Gi
+            cpu: 2000m
+            memory: 2Gi
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -190,10 +190,10 @@ spec:
             port: 80
             resources:
               requests:
-                cpu: 1000m
-                memory: 1Gi
+                cpu: 500m
+                memory: 512Mi
               limits:
-                memory: 2Gi
+                memory: 1Gi
             instances: 2
           healthCheck:
             bucket:
