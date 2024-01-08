@@ -55,11 +55,11 @@ spec:
             envFrom: *envFrom
             resources:
               requests:
-                #gpu.intel.com/i915: 1
+                gpu.intel.com/i915: 1
                 cpu: 100m
                 memory: 250Mi
-              #limits:
-                #gpu.intel.com/i915: 1
+              limits:
+                gpu.intel.com/i915: 1
                 #memory: 1Gi
         pod:
           securityContext:
