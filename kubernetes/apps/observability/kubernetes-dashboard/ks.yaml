@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-cert-manager
     - name: cluster-apps-metrics-server
-  path: ./kubernetes/apps/monitoring/kubernetes-dashboard/app
+  path: ./kubernetes/apps/observability/kubernetes-dashboard/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-ipmi-exporter-app
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/monitoring/ipmi-exporter/app
+  path: ./kubernetes/apps/observability/ipmi-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -15,7 +15,7 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: ipmi-exporter
-      namespace: monitoring
+      namespace: observability
   interval: 30m
   retryInterval: 1m
   timeout: 3m
