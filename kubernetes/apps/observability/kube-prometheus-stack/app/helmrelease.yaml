@@ -45,7 +45,7 @@ spec:
         pathType: Prefix
         ingressClassName: internal
         hosts:
-          - &host alertmanager.devbu.io
+          - &host alertmanager.calzone.zone
         tls:
           - hosts:
               - *host
@@ -97,9 +97,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 192.168.42.10
-        - 192.168.42.11
-        - 192.168.42.12
+        - 192.168.99.21
+        - 192.168.99.22
+        - 192.168.99.23
       serviceMonitor:
         metricRelabelings:
           # Remove duplicate labels provided by k3s
@@ -126,7 +126,7 @@ spec:
         ingressClassName: internal
         pathType: Prefix
         hosts:
-          - &host prometheus.devbu.io
+          - &host prometheus.calzone.zone
         tls:
           - hosts:
               - *host

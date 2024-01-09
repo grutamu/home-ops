@@ -76,7 +76,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: internal
-        hostname: &host thanos-query-frontend.devbu.io
+        hostname: &host thanos-query-frontend.calzone.zone
         tls: true
         extraTls:
           - hosts:
@@ -88,7 +88,7 @@ spec:
       dnsDiscovery:
         sidecarsService: kube-prometheus-stack-thanos-discovery
         sidecarsNamespace: observability
-      stores: ["thanos.turbo.ac:10901"]
+      stores: ["thanos.calzone.zone:10901"]
     bucketweb:
       enabled: true
       replicaCount: 2
