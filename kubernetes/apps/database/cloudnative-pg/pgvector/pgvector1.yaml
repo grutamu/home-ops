@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: pgvector4
+  name: pgvector5
 spec:
   instances: 3
   imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
@@ -16,7 +16,7 @@ spec:
   enableSuperuserAccess: true
   bootstrap:
     recovery:
-      source: &previousCluster pgvector3
+      source: &previousCluster pgvector4
   postgresql:
     shared_preload_libraries:
       - "vectors.so"
