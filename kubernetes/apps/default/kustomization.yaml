@@ -4,12 +4,14 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./media-pvc.yaml
+#required apps
+  - ./minio/ks.yaml
 
+#optional apps
   # - ./authelia/ks.yaml
   # # - ./home-assistant/ks.yaml
   # - ./immich/ks.yaml
   # - ./lldap/ks.yaml
-  # - ./minio/ks.yaml
   # - ./overseerr/ks.yaml
   # - ./plex/ks.yaml
   # - ./prowlarr/ks.yaml
