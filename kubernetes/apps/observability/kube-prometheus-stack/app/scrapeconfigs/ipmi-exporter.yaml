@@ -3,7 +3,7 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: kube-vip
+  name: ipmi-exporter
 spec:
   staticConfigs:
     - targets:
