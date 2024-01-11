@@ -7,7 +7,15 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - 192.168.42.10:2112
-        - 192.168.42.11:2112
-        - 192.168.42.12:2112
+        - 192.168.1.116
   metricsPath: /metrics
+  params:
+    module:
+    - default
+  relabelings:
+  - sourceLabels: [__address__]
+    targetLabel: __param_target
+  - sourceLabels: [__param_target]
+    targetLabel: instance
+  - targetLabel: __address__
+    replacement: ipmi-exporter:9290
