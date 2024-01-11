@@ -9,7 +9,7 @@ resources:
   - ./minio/ks.yaml
 
 #optional apps
-  # - ./authelia/ks.yaml
+  - ./authelia/ks.yaml
   # - ./home-assistant/ks.yaml
   - ./immich/ks.yaml
   - ./lldap/ks.yaml
