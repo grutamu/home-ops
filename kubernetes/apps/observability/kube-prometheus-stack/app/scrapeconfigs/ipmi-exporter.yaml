@@ -3,10 +3,12 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: ipmi-exporter
+  name: ipmi
 spec:
   staticConfigs:
-    - targets:
+    - labels:
+        job: ipmi_exporter
+      targets:
         - 192.168.1.116
   metricsPath: /metrics
   params:
