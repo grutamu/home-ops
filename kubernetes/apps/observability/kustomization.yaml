@@ -8,10 +8,10 @@ resources:
   # Flux-Kustomizations
   - ./ipmi-exporter/ks.yaml
   # - ./gatus/ks.yaml
-  # - ./grafana/ks.yaml
-  # - ./kube-prometheus-stack/ks.yaml
+  - ./grafana/ks.yaml
+  - ./kube-prometheus-stack/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
-  # - ./loki/ks.yaml
-  # - ./smartctl-exporter/ks.yaml
-  # - ./thanos/ks.yaml
+  - ./loki/ks.yaml
+  - ./smartctl-exporter/ks.yaml
+  - ./thanos/ks.yaml
   # - ./unpoller/ks.yaml
