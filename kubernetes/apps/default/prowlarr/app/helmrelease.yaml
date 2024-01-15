@@ -70,7 +70,6 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                memory: 128M
               limits:
                 memory: 1Gi
         pod:

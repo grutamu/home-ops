@@ -74,6 +74,9 @@ spec:
               - name: /dev/disk/by-id/nvme-PC_SN730_NVMe_WDC_512GB_1944B8804088
           - name: prd-k3s-03
             devices:
+              - name: /dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BH1_S63ZNX0TA14088
+          - name: prd-k3s-04
+            devices:
               - name: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
       placement:
         mgr: &placement
@@ -88,21 +91,18 @@ spec:
         mgr:
           requests:
             cpu: 500m
-            memory: 512Mi
           limits:
             cpu: 2000m
             memory: 2Gi
         mon:
           requests:
             cpu: 1000m
-            memory: 512Mi
           limits:
             cpu: 2000m
             memory: 2Gi
         osd:
           requests:
             cpu: 1000m
-            memory: 512Mi
           limits:
             cpu: 2000m
             memory: 2Gi
@@ -150,7 +150,6 @@ spec:
             resources:
               requests:
                 cpu: 1000m
-                memory: 2Gi
               limits:
                 memory: 2Gi
         storageClass:
@@ -191,7 +190,6 @@ spec:
             resources:
               requests:
                 cpu: 500m
-                memory: 512Mi
               limits:
                 memory: 1Gi
             instances: 2
