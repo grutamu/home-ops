@@ -153,6 +153,7 @@ spec:
             resources:
               requests:
                 cpu: 1000m
+                memory: 2Gi
               limits:
                 memory: 2Gi
         storageClass:
@@ -193,6 +194,7 @@ spec:
             resources:
               requests:
                 cpu: 500m
+                memory: 1Gi
               limits:
                 memory: 1Gi
             instances: 2
