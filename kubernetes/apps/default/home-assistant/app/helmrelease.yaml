@@ -1,10 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: home-assistant
-  namespace: default
 spec:
   interval: 30m
   chart:
@@ -15,7 +14,6 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
@@ -35,15 +33,6 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.1
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: home-assistant-secret
         containers:
           main:
             image:
@@ -51,9 +40,9 @@ spec:
               tag: 2024.1.3@sha256:f1adaefd28f877f6377487d6c4e7d7daf01db73bfcad8379314ab507b84a6666
             env:
               TZ: America/Chicago
-              POSTGRES_HOST: postgres-rw.database.svc.cluster.local
-              POSTGRES_DB: home_assistant
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: home-assistant-secret
             probes:
               liveness:
                 enabled: false
@@ -61,16 +50,20 @@ spec:
                 enabled: false
               startup:
                 enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
               limits:
                 memory: 1Gi
         pod:
           securityContext:
             runAsUser: 568
             runAsGroup: 568
+            runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
@@ -85,7 +78,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.calzone.zone
         hosts:
-          - host: &host hass-dev.calzone.zone
+          - host: &host hass.calzone.zone
             paths:
               - path: /
                 service:
@@ -98,3 +91,5 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant
+      tmp:
+        type: emptyDir
