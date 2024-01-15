@@ -12,7 +12,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: pgvector6
+    cnpg.io/cluster: pgvector7
     cnpg.io/podRole: instance
 ---
 apiVersion: v1
@@ -28,7 +28,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: pgvector6
+    cnpg.io/cluster: pgvector7
     role: replica
 ---
 apiVersion: v1
@@ -44,6 +44,6 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    cnpg.io/cluster: pgvector6
+    cnpg.io/cluster: pgvector7
     role: primary
   sessionAffinity: None
