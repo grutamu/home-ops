@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 55.7.0
+      version: 55.11.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -29,8 +29,6 @@ spec:
   dependsOn:
     - name: local-path-provisioner
       namespace: storage
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
   valuesFrom:
     - kind: ConfigMap
       name: kube-state-metrics-configmap
@@ -50,7 +48,7 @@ spec:
           - hosts:
               - *host
       alertmanagerSpec:
-        replicas: 2
+        replicas: 1
         useExistingSecret: true
         configSecret: alertmanager-secret
         storage:
@@ -135,7 +133,7 @@ spec:
       thanosServiceMonitor:
         enabled: true
       prometheusSpec:
-        replicas: 2
+        replicas: 1
         replicaExternalLabelName: __replica__
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
