@@ -102,7 +102,7 @@ tasks:
       - { msg: "RepositorySource not found",     sh: "kubectl --context {{.cluster}} -n {{.ns}} get replicationsources {{.app}}" }
 
   # To run restore jobs in parallel for all replicationdestinations:
-  #    - kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs --max-procs=4 -l bash -c 'task volsync:restore app=$0 ns=$1'
+  # kubectl get replicationsources --all-namespaces --no-headers | awk '{print $2, $1}' | xargs -P 4 -I{} bash -c 'task volsync:restore app=$0 ns=$1 cluster=default previous=7' {\}
   restore:
     desc: Restore a PVC for an application
     summary: |
