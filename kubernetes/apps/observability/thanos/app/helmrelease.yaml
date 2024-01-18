@@ -88,7 +88,8 @@ spec:
       dnsDiscovery:
         sidecarsService: kube-prometheus-stack-thanos-discovery
         sidecarsNamespace: observability
-      # stores: ["thanos.calzone.zone:10901"]
+      stores:
+        - thanos-query-grpc.observability:10901
     bucketweb:
       enabled: true
       replicaCount: 2
