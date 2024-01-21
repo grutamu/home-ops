@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -50,7 +50,7 @@ spec:
           jbops:
             image:
               repository: registry.k8s.io/git-sync/git-sync
-              tag: v4.1.0
+              tag: v4.2.0
             env:
               GITSYNC_REPO: https://github.com/blacktwin/JBOPS
               GITSYNC_REF: master
