@@ -24,4 +24,4 @@ kubernetes:
     #       ansible_user: ansible
     #       ansible_host: 192.168.99.24
     #       ceph_drives:
-    #         - /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
+    #         - /dev/disk/by-id/nvme-Micron_2200S_NVMe_512GB_________201327232DDD
