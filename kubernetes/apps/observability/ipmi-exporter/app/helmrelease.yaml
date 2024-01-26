@@ -34,7 +34,7 @@ spec:
           main:
             image:
               repository: prometheuscommunity/ipmi-exporter
-              tag: v1.7.0
+              tag: v1.8.0
             args:
               - --config.file=/config/config.yml
               - --log.level=debug
