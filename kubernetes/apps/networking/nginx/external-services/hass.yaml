@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hass
+  name: hass-external
   namespace: networking
 spec:
   ports:
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: hass
+  name: hass-external
   namespace: networking
 subsets:
 - addresses:
@@ -29,7 +29,7 @@ kind: Ingress
 metadata:
   annotations:
     external-dns.alpha.kubernetes.io/target: external.calzone.zone
-  name: hass
+  name: hass-external
   namespace: networking
 spec:
   ingressClassName: external
