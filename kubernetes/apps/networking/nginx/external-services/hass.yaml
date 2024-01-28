@@ -39,7 +39,7 @@ spec:
       paths:
       - backend:
           service:
-            name: hass
+            name: hass-external
             port:
               number: 8123
         path: /
