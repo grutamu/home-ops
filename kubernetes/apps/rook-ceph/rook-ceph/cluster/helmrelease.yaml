@@ -71,7 +71,7 @@ spec:
               - name: /dev/disk/by-id/nvme-Micron_2200S_NVMe_512GB_________201327232DDD
           - name: prd-k3s-02
             devices:
-              - name: /dev/disk/by-id/nvme-PC_SN730_NVMe_WDC_512GB_1944B8804088
+              - name: /dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5P2NS0WB06148H
           - name: prd-k3s-03
             devices:
               - name: /dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BH1_S63ZNX0TA14088
