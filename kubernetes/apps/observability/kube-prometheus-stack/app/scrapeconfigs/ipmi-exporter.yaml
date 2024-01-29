@@ -10,7 +10,7 @@ spec:
         job: ipmi_exporter
       targets:
         - 192.168.1.116
-  metricsPath: /metrics
+  metricsPath: /ipmi
   params:
     module:
     - default
