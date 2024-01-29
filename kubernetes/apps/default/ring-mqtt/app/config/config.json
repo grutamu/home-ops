@@ -1,0 +1,15 @@
+{
+  "mqtt_url": "mqtt://{{ .MOSQUITTO_MQTT_USERNAME }}:{{ .MOSQUITTO_MQTT_PASSWORD }}@{{ .MOSQUITTO_LOADBALANCER_IP }}",
+  "mqtt_options": "",
+  "livestream_user": "",
+  "livestream_pass": "",
+  "disarm_code": "",
+  "enable_cameras": true,
+  "enable_modes": true,
+  "enable_panic": false,
+  "branch": "addon",
+  "debug": "ring-*",
+  "location_ids": [
+    "{{ .RING-MQTT_LOCATION }}"
+  ]
+}
