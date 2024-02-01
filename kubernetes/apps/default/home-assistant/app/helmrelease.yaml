@@ -86,6 +86,9 @@ spec:
           homekit2:
             port: 31650
             protocol: TCP
+          homekit3:
+            port: 51827
+            protocol: TCP
     ingress:
       main:
         enabled: true
