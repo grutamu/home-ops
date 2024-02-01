@@ -78,11 +78,14 @@ spec:
         controller: main
         ports:
           mdns:
-              port: 5353
-              protocol: UDP
+            port: 5353
+            protocol: UDP
           homekit:
-              port: 21063
-              protocol: TCP
+            port: 21063
+            protocol: TCP
+          homekit2:
+            port: 31650
+            protocol: TCP
     ingress:
       main:
         enabled: true
