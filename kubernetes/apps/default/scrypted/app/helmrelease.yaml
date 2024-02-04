@@ -1,0 +1,84 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: scrypted
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: volsync
+      namespace: storage
+  values:
+    defaultPodOptions:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/koush/scrypted
+              tag: 18-jammy-full.s6-v0.93.0
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 1Gi
+    service:
+      main:
+        ports:
+          http:
+            port: 10443
+      video:
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.99.107
+        controller: main
+        ports:
+          rebroadcast:
+            port: 34135
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        hosts:
+          - host: &host scrypted.calzone.zone
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      data:
+        enabled: true
+        existingClaim: scrypted
+        globalMounts:
+          - path: /server/volume
+
