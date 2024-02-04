@@ -52,7 +52,7 @@ spec:
       main:
         ports:
           http:
-            port: 10443
+            port: 11080
       video:
         type: LoadBalancer
         annotations:
