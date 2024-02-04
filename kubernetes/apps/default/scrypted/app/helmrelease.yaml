@@ -31,9 +31,6 @@ spec:
     - name: volsync
       namespace: storage
   values:
-    defaultPodOptions:
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
     controllers:
       main:
         annotations:
@@ -59,8 +56,10 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.99.107
         controller: main
         ports:
-          rebroadcast:
+          camera1:
             port: 34135
+          camera2:
+            port: 34136
     ingress:
       main:
         enabled: true
