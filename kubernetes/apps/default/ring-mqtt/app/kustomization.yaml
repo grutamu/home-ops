@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: default
 resources:
   - ./helmrelease.yaml
+  - ./externalsecret.yaml
   - ../../../../templates/volsync
 configMapGenerator:
   - name: ring-mqtt-configmap-tpl
