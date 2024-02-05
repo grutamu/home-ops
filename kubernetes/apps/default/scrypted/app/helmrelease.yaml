@@ -31,6 +31,9 @@ spec:
     - name: volsync
       namespace: storage
   values:
+    defaultPodOptions:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
     controllers:
       main:
         annotations:
