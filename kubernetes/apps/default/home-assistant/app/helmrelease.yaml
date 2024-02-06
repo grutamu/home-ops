@@ -99,7 +99,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.calzone.zone
         hosts:
-          - host: &host hass-dev.calzone.zone
+          - host: &host hass.calzone.zone
             paths:
               - path: /
                 service:
