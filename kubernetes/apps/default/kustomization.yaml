@@ -10,7 +10,7 @@ resources:
 
 #optional apps
   - ./authelia/ks.yaml
-  - ./home-assistant/ks.yaml
+  # - ./home-assistant/ks.yaml
   - ./immich/ks.yaml
   - ./lldap/ks.yaml
   - ./mosquitto/ks.yaml
