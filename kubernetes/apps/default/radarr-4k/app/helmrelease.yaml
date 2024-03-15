@@ -43,7 +43,7 @@ spec:
               pullPolicy: IfNotPresent
             envFrom: &envFrom
               - secretRef:
-                  name: radarr-secret
+                  name: radarr-4k-secret
         containers:
           main:
             image:
