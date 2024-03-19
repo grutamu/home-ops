@@ -9,19 +9,19 @@ resources:
   - ./minio/ks.yaml
 
 #optional apps
-  # - ./authelia/ks.yaml
-  # - ./home-assistant/ks.yaml
-  # - ./immich/ks.yaml
-  # - ./lldap/ks.yaml
-  # - ./mosquitto/ks.yaml
-  # - ./overseerr/ks.yaml
-  # - ./plex/ks.yaml
-  # - ./prowlarr/ks.yaml
-  # - ./radarr/ks.yaml
-  # # - ./radarr-4k/ks.yaml
-  # - ./recyclarr/ks.yaml
-  # # - ./ring-mqtt/ks.yaml
-  # - ./sabnzbd/ks.yaml
-  # - ./scrypted/ks.yaml
-  # - ./sonarr/ks.yaml
-  # - ./tautulli/ks.yaml
+  - ./authelia/ks.yaml
+  - ./home-assistant/ks.yaml
+  - ./immich/ks.yaml
+  - ./lldap/ks.yaml
+  - ./mosquitto/ks.yaml
+  - ./overseerr/ks.yaml
+  - ./plex/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml
+  - ./radarr-4k/ks.yaml
+  - ./recyclarr/ks.yaml
+  # - ./ring-mqtt/ks.yaml
+  - ./sabnzbd/ks.yaml
+  - ./scrypted/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
