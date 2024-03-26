@@ -31,9 +31,9 @@ spec:
       envFrom:
         - secretRef:
             name: authentik-secret
-    # authentik:
-    #   redis:
-    #     host: "redis+sentinel://redis.database.svc.cluster.local:26379/?db=3&mastername=redis-master"
+    authentik:
+      redis:
+        host: "authentik-redis"
     server:
       autoscaling:
         enabled: true
