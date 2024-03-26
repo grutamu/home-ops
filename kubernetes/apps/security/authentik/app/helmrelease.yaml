@@ -33,7 +33,7 @@ spec:
             name: authentik-secret
     authentik:
       redis:
-        host: redis.database.svc.cluster.local
+        host: "redis+sentinel://redis.database.svc.cluster.local:26379/?db=3&mastername=redis-master"
     server:
       autoscaling:
         enabled: true
