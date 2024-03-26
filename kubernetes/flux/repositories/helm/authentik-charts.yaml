@@ -8,4 +8,4 @@ metadata:
 spec:
   interval: 30m
   url: https://charts.goauthentik.io
-  timeout: 3m
+  # timeout: 3m
