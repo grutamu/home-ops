@@ -45,6 +45,13 @@ spec:
                 cpu: 100m
               limits:
                 memory: 1Gi
+          probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
     service:
       main:
         ports:
