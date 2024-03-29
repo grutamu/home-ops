@@ -45,25 +45,25 @@ spec:
                 cpu: 100m
               limits:
                 memory: 1Gi
-    service:
-      main:
-        ports:
-          http:
-            port: 55123
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        hosts:
-          - host: &host ring-mqtt.calzone.zone
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+    # service:
+    #   main:
+    #     ports:
+    #       http:
+    #         port: 55123
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     className: internal
+    #     hosts:
+    #       - host: &host ring-mqtt.calzone.zone
+    #         paths:
+    #           - path: /
+    #             service:
+    #               name: main
+    #               port: http
+    #     tls:
+    #       - hosts:
+    #           - *host
     persistence:
       data:
         enabled: true
