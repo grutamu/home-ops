@@ -46,76 +46,76 @@ radarr:
           - name: SQP-1 (1080p)
 
 
-#####
-#   sqp-1-2160p:
-#     base_url: http://radarr-4k.default.svc.cluster.local
-#     api_key: !env_var RADARR_API_KEY
+####
+  sqp-1-2160p:
+    base_url: http://radarr-4k.default.svc.cluster.local
+    api_key: !env_var RADARR-4K_API_KEY
 
-#     quality_profiles:
-#       - name: SQP-1 (2160p)
-#         # Uncomment the below line if you don't have access to top-tier indexers
-#         # min_format_score: 10
+    quality_profiles:
+      - name: SQP-1 (2160p)
+        # Uncomment the below line if you don't have access to top-tier indexers
+        # min_format_score: 10
 
-#     include:
-#       # Comment out any of the following includes to disable them
-#       - template: radarr-quality-definition-sqp-streaming
+    include:
+      # Comment out any of the following includes to disable them
+      - template: radarr-quality-definition-sqp-streaming
 
-#       # Choose *one* of the following four options to determine quality profile preference
-#       # IMAX-E options also require uncommenting the IMAX Enhanced custom format below
-#       # Comment out all four options to disable quality profile sync
-#       - template: radarr-quality-profile-sqp-1-2160p-default
-#       # - template: radarr-quality-profile-sqp-1-2160p-imax-e
-#       # - template: radarr-quality-profile-sqp-1-2160p-4k-only-default
-#       # - template: radarr-quality-profile-sqp-1-2160p-4k-only-imax-e
+      # Choose *one* of the following four options to determine quality profile preference
+      # IMAX-E options also require uncommenting the IMAX Enhanced custom format below
+      # Comment out all four options to disable quality profile sync
+      - template: radarr-quality-profile-sqp-1-2160p-default
+      # - template: radarr-quality-profile-sqp-1-2160p-imax-e
+      # - template: radarr-quality-profile-sqp-1-2160p-4k-only-default
+      # - template: radarr-quality-profile-sqp-1-2160p-4k-only-imax-e
 
-#       - template: radarr-custom-formats-sqp-1-2160p
+      - template: radarr-custom-formats-sqp-1-2160p
 
-# # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
-#     custom_formats:
-#       # Movie Versions
-#       - trash_ids:
-#           # Uncomment the next line if you prefer 1080p/2160p WEBDL with IMAX Enhanced
-#           # - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
-#         quality_profiles:
-#           - name: SQP-1 (2160p)
+# Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
+    custom_formats:
+      # Movie Versions
+      - trash_ids:
+          # Uncomment the next line if you prefer 1080p/2160p WEBDL with IMAX Enhanced
+          # - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
+        quality_profiles:
+          - name: SQP-1 (2160p)
 
-#       # Unwanted
-#       - trash_ids:
-#           # Uncomment the next six lines to block all x265 HD releases
-#           # - 839bea857ed2c0a8e084f3cbdbd65ecb # x265 (no HDR/DV)
-#         # quality_profiles:
-#           # - name: SQP-1 (2160p)
-#             # score: 0
-#       # - trash_ids:
-#           # - dc98083864ea246d05a42df0d05f81cc # x265 (HD)
-#         quality_profiles:
-#           - name: SQP-1 (2160p)
+      # Unwanted
+      - trash_ids:
+          # Uncomment the next six lines to block all x265 HD releases
+          # - 839bea857ed2c0a8e084f3cbdbd65ecb # x265 (no HDR/DV)
+        # quality_profiles:
+          # - name: SQP-1 (2160p)
+            # score: 0
+      # - trash_ids:
+          # - dc98083864ea246d05a42df0d05f81cc # x265 (HD)
+        quality_profiles:
+          - name: SQP-1 (2160p)
 
-#       # Optional
-#       - trash_ids:
-#           # Uncomment the next two lines if you have a setup that supports HDR10+
-#           # - b17886cb4158d9fea189859409975758 # HDR10+ Boost
-#           # - 55a5b50cb416dea5a50c4955896217ab # DV HDR10+ Boost
+      # Optional
+      - trash_ids:
+          # Uncomment the next two lines if you have a setup that supports HDR10+
+          # - b17886cb4158d9fea189859409975758 # HDR10+ Boost
+          # - 55a5b50cb416dea5a50c4955896217ab # DV HDR10+ Boost
 
-#           # Uncomment any of the following optional custom formats if you want them to be added to
-#           # the quality profile
-#           # - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
-#           # - 90cedc1fea7ea5d11298bebd3d1d3223 # EVO (no WEBDL)
-#           # - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5 # No-RlsGroup
-#           # - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
-#           # - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
-#           # - f537cf427b64c38c8e36298f657e4828 # Scene
-#         quality_profiles:
-#           - name: SQP-1 (2160p)
+          # Uncomment any of the following optional custom formats if you want them to be added to
+          # the quality profile
+          # - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
+          # - 90cedc1fea7ea5d11298bebd3d1d3223 # EVO (no WEBDL)
+          # - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5 # No-RlsGroup
+          # - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
+          # - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
+          # - f537cf427b64c38c8e36298f657e4828 # Scene
+        quality_profiles:
+          - name: SQP-1 (2160p)
 
-#       - trash_ids:
-#           - 9c38ebb7384dada637be8899efa68e6f # SDR
-#         quality_profiles:
-#           - name: SQP-1 (2160p)
-#             # score: 0 # Uncomment this line to allow SDR releases
+      - trash_ids:
+          - 9c38ebb7384dada637be8899efa68e6f # SDR
+        quality_profiles:
+          - name: SQP-1 (2160p)
+            # score: 0 # Uncomment this line to allow SDR releases
 
-#       - trash_ids:
-#           - cae4ca30163749b891686f95532519bd # AV1
-#         quality_profiles:
-#           - name: SQP-1 (2160p)
-#             # score: 0 # Uncomment this line to allow AV1 releases
+      - trash_ids:
+          - cae4ca30163749b891686f95532519bd # AV1
+        quality_profiles:
+          - name: SQP-1 (2160p)
+            # score: 0 # Uncomment this line to allow AV1 releases
