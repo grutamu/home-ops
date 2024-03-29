@@ -19,7 +19,7 @@ resources:
   - ./radarr/ks.yaml
   - ./radarr-4k/ks.yaml
   - ./recyclarr/ks.yaml
-  # - ./ring-mqtt/ks.yaml
+  - ./ring-mqtt/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
