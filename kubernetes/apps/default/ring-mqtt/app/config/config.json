@@ -1,5 +1,5 @@
 {
-  "mqtt_url": "mqtt://{{ .MOSQUITTO_MQTT_USERNAME }}:{{ .MOSQUITTO_MQTT_PASSWORD }}@{{ .MOSQUITTO_LOADBALANCER_IP }}",
+  "mqtt_url": "mqtt://{{ .MOSQUITTO_MQTT_USERNAME }}:{{ .MOSQUITTO_MQTT_PASSWORD }}@mosquitto.default.svc.cluster.local",
   "mqtt_options": "",
   "livestream_user": "",
   "livestream_pass": "",
