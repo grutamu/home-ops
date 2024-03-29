@@ -52,11 +52,12 @@ spec:
                   enabled: false
                 startup:
                   enabled: false
-    # service:
-    #   main:
-    #     ports:
-    #       http:
-    #         port: 55123
+    service:
+      main:
+        enabled: false
+        # ports:
+        #   http:
+        #     port: 55123
     # ingress:
     #   main:
     #     enabled: true
