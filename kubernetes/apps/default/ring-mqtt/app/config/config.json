@@ -10,6 +10,6 @@
   "branch": "addon",
   "debug": "ring-*",
   "location_ids": [
-    "{{ .RING-MQTT_LOCATION }}"
+    "{{ .RINGMQTT_LOCATION }}"
   ]
 }
