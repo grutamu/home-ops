@@ -71,7 +71,7 @@ spec:
         globalMounts:
           - path: /data
       config-file:
-        type: configMap
+        type: secret
         name: ring-mqtt-configmap
         globalMounts:
           - path: /data/config.json
