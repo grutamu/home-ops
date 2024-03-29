@@ -49,7 +49,7 @@ radarr:
 ####
   sqp-1-2160p:
     base_url: http://radarr-4k.default.svc.cluster.local
-    api_key: !env_var RADARR-4K_API_KEY
+    api_key: !env_var RADARR4K_API_KEY
 
     quality_profiles:
       - name: SQP-1 (2160p)
