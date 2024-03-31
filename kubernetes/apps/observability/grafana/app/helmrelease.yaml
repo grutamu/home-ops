@@ -185,18 +185,18 @@ spec:
         minio:
           # renovate: depName="MinIO Dashboard"
           gnetId: 13502
-          revision: 24
+          revision: 26
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         node-exporter-full:
           # renovate: depName="Node Exporter Full"
           gnetId: 1860
-          revision: 33
+          revision: 36
           datasource: Prometheus
         redis:
           # renovate: depName="Redis Dashboard for Prometheus Redis Exporter 1.x"
           gnetId: 763
-          revision: 5
+          revision: 6
           datasource: Prometheus
         spegel:
           # renovate: depName="Spegel"
