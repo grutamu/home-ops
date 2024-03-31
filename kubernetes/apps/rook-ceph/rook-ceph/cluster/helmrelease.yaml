@@ -153,9 +153,9 @@ spec:
             resources:
               requests:
                 cpu: 1000m
-                memory: 2Gi
+                memory: 512Mi
               limits:
-                memory: 2Gi
+                memory: 1Gi
         storageClass:
           enabled: true
           isDefault: false
@@ -194,7 +194,7 @@ spec:
             resources:
               requests:
                 cpu: 500m
-                memory: 1Gi
+                memory: 512Mi
               limits:
                 memory: 1Gi
             instances: 2
