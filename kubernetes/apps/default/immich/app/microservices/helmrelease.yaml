@@ -68,7 +68,7 @@ spec:
                     matchExpressions:
                       - key: app.kubernetes.io/name
                         operator: In
-                        values: ["frigate"]
+                        values: ["plex"]
                   topologyKey: kubernetes.io/hostname
           nodeSelector:
             gpu.intel.com/device-id.0300-9bc8.present: "true"
