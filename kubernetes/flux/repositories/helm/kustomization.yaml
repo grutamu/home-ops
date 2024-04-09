@@ -9,7 +9,7 @@ resources:
   - ./bjw-s.yaml
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
-  - ./coredns.yamls
+  - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./democratic-csi.yaml
   - ./external-dns.yaml
