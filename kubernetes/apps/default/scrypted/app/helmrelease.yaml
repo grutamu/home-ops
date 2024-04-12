@@ -64,7 +64,7 @@ spec:
           camera2:
             port: 34136
           camera3:
-            port: 39281
+            port: 34137
     ingress:
       main:
         enabled: true
