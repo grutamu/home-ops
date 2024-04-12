@@ -12,6 +12,7 @@ resources:
   - ./coredns.yaml
   - ./csi-driver-nfs.yaml
   - ./democratic-csi.yaml
+  - ./descheduler.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
   - ./grafana.yaml
@@ -27,3 +28,4 @@ resources:
   - ./node-feature-discovery.yaml
   - ./piraeus.yaml
   - ./rook-ceph.yaml
+  - ./xenitab.yaml
