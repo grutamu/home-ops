@@ -9,7 +9,7 @@ spec:
     - # Zooz 800 Z-Wave Stick
       name: zooz.zwave
       labels:
-        aeotec.feature.node.kubernetes.io/zwave: "true"
+        zooz.feature.node.kubernetes.io/zwave: "true"
       matchFeatures:
         - feature: usb.device
           matchExpressions:

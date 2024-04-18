@@ -61,7 +61,7 @@ spec:
                 memory: 512Mi
         pod:
           nodeSelector:
-            aeotec.feature.node.kubernetes.io/zwave: "true"
+            zooz.feature.node.kubernetes.io/zwave: "true"
     service:
       app:
         controller: zwave-js-ui
