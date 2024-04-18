@@ -38,7 +38,7 @@ spec:
               repository: ghcr.io/zwave-js/zwave-js-ui
               tag: 9.9.1@sha256:ce5278bd998ad8ea2422a6f6c2ec606fcde0d065f6c8e2ae5300a196b4fcf1bb
             env:
-              TZ: America/New_York
+              TZ: America/Chicago
             probes:
               liveness: &probes
                 enabled: true
@@ -84,7 +84,7 @@ spec:
       app:
         className: internal
         hosts:
-          - host: &host "zwave.devbu.io"
+          - host: &host "zwave.calzone.zone"
             paths:
               - path: /
                 service:
