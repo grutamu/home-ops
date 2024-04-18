@@ -24,4 +24,4 @@ resources:
   - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
-  - ./zwave-js-ui.yaml
+  - ./zwave-js-ui/ks.yaml
