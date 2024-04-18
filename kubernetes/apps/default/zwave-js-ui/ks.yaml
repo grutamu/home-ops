@@ -10,9 +10,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: external-secrets-stores
-    - name: node-feature-discovery-rules
+  # dependsOn:
+    # - name: external-secrets-stores
+    # - name: node-feature-discovery-rules
   path: ./kubernetes/apps/default/zwave-js-ui/app
   prune: true
   sourceRef:
