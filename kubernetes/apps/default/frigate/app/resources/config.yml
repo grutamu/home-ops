@@ -72,3 +72,27 @@ cameras:
       width: 960
       height: 720
       fps: 10
+
+  frigate_packagecam:
+    ffmpeg:
+      inputs:
+        - path: rtsp://localhost:8554/frigate_packagecam
+          roles: ["detect"]
+        - path: rtsp://localhost:8554/frigate_packagecam
+          roles: ["record"]
+    detect:
+      width: 960
+      height: 720
+      fps: 10
+
+  frigate_garage:
+    ffmpeg:
+      inputs:
+        - path: rtsp://localhost:8554/frigate_garage_lq
+          roles: ["detect"]
+        - path: rtsp://localhost:8554/frigate_garage_hq
+          roles: ["record"]
+    detect:
+      width: 960
+      height: 720
+      fps: 10
