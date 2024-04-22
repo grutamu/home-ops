@@ -52,11 +52,11 @@ objects:
 
 go2rtc:
   streams:
-    frigate_frontdoor_hq: rtsps://192.168.1.1:7441/uOdLAlKjUTaCcKey
-    frigate_frontdoor_lq: rtsps://192.168.1.1:7441/8KanNbc6boyTJpmV
-    frigate_packagecam: rtsps://192.168.1.1:7441/oZ6zmPyXEdVwUOZs
-    frigate_garage_hq: rtsps://192.168.1.1:7441/xnexsGcsDCI8PxZY
-    frigate_garage_lq: rtsps://192.168.1.1:7441/aDWsDvkL16CmQpiB
+    frigate_frontdoor_hq: rtspx://192.168.1.1:7441/uOdLAlKjUTaCcKey
+    frigate_frontdoor_lq: rtspx://192.168.1.1:7441/8KanNbc6boyTJpmV
+    frigate_packagecam: rtspx://192.168.1.1:7441/oZ6zmPyXEdVwUOZs
+    frigate_garage_hq: rtspx://192.168.1.1:7441/xnexsGcsDCI8PxZY
+    frigate_garage_lq: rtspx://192.168.1.1:7441/aDWsDvkL16CmQpiB
 
 cameras:
   frigate_frontdoor:
