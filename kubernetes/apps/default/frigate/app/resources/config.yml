@@ -14,14 +14,16 @@ mqtt:
 database:
   path: /data/frigate.db
 
-# detectors:
-#   coral:
+detectors:
+  coral:
 #     type: edgetpu
+    type: cpu
 #     device: usb
 
 ffmpeg:
+  hwaccel_args: preset-intel-qsv-h264
   global_args: ["-hide_banner", "-loglevel", "warning"]
-  hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
+  # hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
   output_args:
     record: preset-record-ubiquiti
 
@@ -70,81 +72,3 @@ cameras:
       width: 960
       height: 720
       fps: 10
-
-
-#   frigate_driveway:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_driveway_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_driveway_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1280
-#       height: 720
-#       fps: 10
-#     objects:
-#       filters:
-#         person:
-#           mask:
-#             - 822,204,1280,360,1280,0,0,0,0,313
-
-#   frigate_garage:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_garage_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_garage_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1024
-#       height: 576
-#       fps: 10
-
-#   frigate_river:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_river_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_river_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1280
-#       height: 720
-#       fps: 10
-
-#   frigate_study:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_study_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_study_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1280
-#       height: 720
-#       fps: 10
-
-#   frigate_living_room:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_living_room_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_living_room_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1024
-#       height: 576
-#       fps: 10
-
-#   frigate_basement_1:
-#     ffmpeg:
-#       inputs:
-#         - path: rtsp://localhost:8554/frigate_basement_1_lq
-#           roles: ["detect"]
-#         - path: rtsp://localhost:8554/frigate_basement_1_hq
-#           roles: ["record"]
-#     detect:
-#       width: 1280
-#       height: 720
-#       fps: 10
