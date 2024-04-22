@@ -68,6 +68,13 @@ objects:
 #     frigate_basement_1_lq: rtspx://unifi-protect.turbo.ac:7441/M5bhAT4dLAKZfmTD
 
 cameras:
+  dummy_camera: # <--- this will be changed to your actual camera later
+    enabled: False
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:554/rtsp
+          roles:
+            - detect
 #   frigate_porch:
 #     ffmpeg:
 #       inputs:
