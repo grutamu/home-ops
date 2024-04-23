@@ -30,14 +30,14 @@ spec:
       namespace: storage
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: vector-agent
-      namespace: observability
-    - name: vector-aggregator
-      namespace: observability
+    # - name: vector-agent
+    #   namespace: observability
+    # - name: vector-aggregator
+    #   namespace: observability
   valuesFrom:
     - targetPath: loki.storage.bucketNames.chunks
       kind: ConfigMap
-      name: &cephBucket loki-bucket
+      name: &cephBucket loki-bucket-v2
       valuesKey: BUCKET_NAME
     - targetPath: loki.storage.s3.endpoint
       kind: ConfigMap
