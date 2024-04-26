@@ -6,7 +6,7 @@ metadata:
   name: pgvector
   namespace: database
 spec:
-  schedule: "@hourly"
+  schedule: "@daily"
   immediate: true
   backupOwnerReference: self
   cluster:
