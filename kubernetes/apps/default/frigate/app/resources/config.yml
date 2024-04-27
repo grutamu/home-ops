@@ -58,6 +58,8 @@ go2rtc:
     frigate_packagecam: rtspx://192.168.1.1:7441/oZ6zmPyXEdVwUOZs
     frigate_garage_hq: rtspx://192.168.1.1:7441/xnexsGcsDCI8PxZY
     frigate_garage_lq: rtspx://192.168.1.1:7441/aDWsDvkL16CmQpiB
+    frigate_front_hq: rtspx://192.168.1.1:7441/Iu7PTWnVramD4hyn
+    frigate_front_lq: rtspx://192.168.1.1:7441/wJUTOiaAWvzFj0CX
 
 cameras:
   frigate_frontdoor:
@@ -90,6 +92,18 @@ cameras:
         - path: rtsp://localhost:8554/frigate_garage_lq
           roles: ["detect"]
         - path: rtsp://localhost:8554/frigate_garage_hq
+          roles: ["record"]
+    detect:
+      width: 960
+      height: 720
+      fps: 10
+
+  frigate_front:
+    ffmpeg:
+      inputs:
+        - path: rtsp://localhost:8554/frigate_front_lq
+          roles: ["detect"]
+        - path: rtsp://localhost:8554/frigate_front_hq
           roles: ["record"]
     detect:
       width: 960
