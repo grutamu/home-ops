@@ -76,9 +76,12 @@ spec:
                       - key: app.kubernetes.io/name
                         operator: In
                         values: ["frigate"]
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values: ["immich"]
                   topologyKey: kubernetes.io/hostname
-          nodeSelector:
-            gpu.intel.com/device-id.0300-9bc8.present: "true"
+          # nodeSelector:
+          #   gpu.intel.com/device-id.0300-9bc8.present: "true"
           securityContext:
             runAsUser: 568
             runAsGroup: 568
