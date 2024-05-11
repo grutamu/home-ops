@@ -82,7 +82,7 @@ spec:
                         values: ["immich"]
                   topologyKey: kubernetes.io/hostname
           nodeSelector:
-            # google.feature.node.kubernetes.io/coral: "true"
+            google.feature.node.kubernetes.io/coral: "true"
             intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:

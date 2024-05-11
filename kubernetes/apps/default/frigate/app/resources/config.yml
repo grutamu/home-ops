@@ -16,9 +16,9 @@ database:
 
 detectors:
   coral:
-#     type: edgetpu
-    type: cpu
-#     device: usb
+    type: edgetpu
+    # type: cpu
+    device: usb
 
 ffmpeg:
   hwaccel_args: preset-intel-qsv-h264
