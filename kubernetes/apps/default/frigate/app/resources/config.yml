@@ -44,12 +44,22 @@ record:
       mode: active_objects
 
 objects:
-  track: ["person"]
+  track:
+    - person
+    - bicycle
+    - car
+    - bird
+    - cat
+    - dog
   filters:
     person:
       min_area: 5000
       max_area: 100000
       threshold: 0.7
+
+birdseye:
+  enabled: True
+  mode: continuous
 
 go2rtc:
   streams:
