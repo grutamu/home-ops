@@ -98,9 +98,9 @@ spec:
       extraFlags:
         - --compact.concurrency=4
         - --delete-delay=30m
-      retentionResolutionRaw: 14d
-      retentionResolution5m: 30d
-      retentionResolution1h: 60d
+      retentionResolutionRaw: 7d
+      retentionResolution5m: 14d
+      retentionResolution1h: 30d
       persistence:
         enabled: true
         storageClass: local-hostpath
