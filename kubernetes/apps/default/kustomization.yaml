@@ -9,7 +9,7 @@ resources:
   - ./minio/ks.yaml
 
 #optional apps
-  - ./frigate/ks.yaml
+  # - ./frigate/ks.yaml
   - ./home-assistant/ks.yaml
   - ./immich/ks.yaml
   - ./lldap/ks.yaml
@@ -24,6 +24,6 @@ resources:
   # - ./sabnzbd/ks.yaml
   - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
-  - ./syncthing/ks.yaml
+  # - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
   - ./zwave-js-ui/ks.yaml
