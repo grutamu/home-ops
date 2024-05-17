@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: home-assistant
@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/home-assistant
-              tag: 2024.5.0@sha256:f40002f1b631e7c2e70e0efd14e5e05a0d22ff08de81b2e7bd0ad3c190d1c744
+              tag: 2024.5.3@sha256:6255c3c8d6c6c0e844379916b5d9038e835b2a58a8722a1973338f43e5912b53
             env:
               TZ: America/Chicago
             envFrom:
