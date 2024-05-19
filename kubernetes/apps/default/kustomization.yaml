@@ -24,6 +24,6 @@ resources:
   # - ./sabnzbd/ks.yaml
   - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
-  # - ./syncthing/ks.yaml
+  - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
   - ./zwave-js-ui/ks.yaml
