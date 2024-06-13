@@ -8,5 +8,4 @@ resources:
   - ./configmap.yaml
   - ./immich-pvc.yaml
   - ./server
-  - ./microservices
   - ./machine-learning

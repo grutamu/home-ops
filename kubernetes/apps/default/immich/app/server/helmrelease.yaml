@@ -41,15 +41,14 @@ spec:
               pullPolicy: IfNotPresent
             envFrom: &envFrom
             - configMapRef:
-                name: &configMap immich-configmap
+                name: immich-configmap
             - secretRef:
-                name: &secret immich-secret
+                name: immich-secret
         containers:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.105.1
-            args: ["start-server.sh"]
+              tag: v1.106.3
             env:
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
             envFrom: *envFrom
@@ -71,9 +70,22 @@ spec:
             resources:
               requests:
                 cpu: 100m
-              # limits:
+              limits:
+                gpu.intel.com/i915: 1
               #   memory: 1Gi
         pod:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values: ["plex"]
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values: ["frigate"]
+                  topologyKey: kubernetes.io/hostname
           securityContext:
             runAsUser: 568
             runAsGroup: 568
@@ -115,3 +127,8 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /.config
+      geoname-dump:
+        enabled: true
+        type: emptyDir
+        globalMounts:
+          - path: /usr/src/app/node_modules/local-reverse-geocoder/geonames_dump
