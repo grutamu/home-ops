@@ -35,5 +35,8 @@ spec:
       app:
         controller: immichredis
         ports:
+          http:
+            enabled: false
           redis:
+            enabled: true
             port: 6379
