@@ -54,6 +54,7 @@ spec:
                   enabled: false
     service:
       app:
+        controller: ringmqtt
         enabled: false
         # ports:
         #   http:
