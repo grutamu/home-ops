@@ -84,6 +84,7 @@ spec:
             port: &api-port 9000
     serviceMonitor:
       app:
+        controller: minio
         enabled: true
         endpoints:
           - port: api
