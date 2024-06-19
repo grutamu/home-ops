@@ -6,7 +6,7 @@ resources:
   - ./media-pvc.yaml
 
 #required apps
-  - ./minio/ks.yaml
+  # - ./minio/ks.yaml
 
 #optional apps
   - ./frigate/ks.yaml
