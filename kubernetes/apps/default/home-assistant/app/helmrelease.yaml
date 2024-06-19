@@ -33,7 +33,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
     controllers:
-      home-assistant:
+      homeassistant:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -71,7 +71,7 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
     service:
       app:
-        controller: home-assistant
+        controller: homeassistant
         ports:
           http:
             port: 8123
@@ -79,7 +79,7 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 192.168.99.106
-        controller: home-assistant
+        controller: homeassistant
         ports:
           mdns:
             port: 5353
