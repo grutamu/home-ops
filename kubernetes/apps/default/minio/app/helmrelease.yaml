@@ -83,7 +83,7 @@ spec:
             enabled: true
             port: &api-port 9000
     serviceMonitor:
-      main:
+      app:
         enabled: true
         endpoints:
           - port: api

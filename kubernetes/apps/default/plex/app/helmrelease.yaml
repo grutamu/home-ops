@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.2.0/charts/library/common/values.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -32,11 +32,11 @@ spec:
       namespace: storage
   values:
     controllers:
-      main:
+      plex:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/onedr0p/plex
               tag: 1.40.3.8555-fef15d30c@sha256:82353ee29f0ba3e782aad43bb2be7c1e04b071b9fc83d6c551ef853793f48ab4
@@ -90,7 +90,8 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups: [44, 105, 10000]
     service:
-      main:
+      app:
+        controller: plex
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 192.168.99.110
@@ -98,7 +99,7 @@ spec:
           http:
             port: 32400
     ingress:
-      main:
+      app:
         enabled: false
         className: external
         annotations:
@@ -109,11 +110,10 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
-          - hosts:
-              - *host
+          - hosts: [*host]
     persistence:
       config:
         enabled: true
