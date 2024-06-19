@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.2.0/charts/library/common/values.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -27,11 +27,11 @@ spec:
     keepHistory: false
   values:
     controllers:
-      main:
+      minio:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: quay.io/minio/minio
               tag: RELEASE.2024-06-13T22-53-53Z
@@ -74,7 +74,8 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
     service:
-      main:
+      app:
+        controller: minio
         ports:
           http:
               port: &console-port 9001
@@ -94,7 +95,7 @@ spec:
               name: minio-secret
               key: MINIO_PROMETHEUS_TOKEN
     ingress:
-      main:
+      app:
         enabled: true
         className: internal
         hosts:
@@ -102,11 +103,10 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: *console-port
         tls:
-          - hosts:
-              - *console-host
+          - hosts: [*console-host]
       s3:
         enabled: true
         className: internal
@@ -121,11 +121,10 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: *api-port
         tls:
-          - hosts:
-              - *api-host
+          - hosts: [*api-host]
 
     persistence:
       config:
