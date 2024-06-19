@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: tsightler/ring-mqtt
-              tag: 5.6.6
+              tag: 5.6.7
             resources:
               requests:
                 cpu: 100m
