@@ -18,11 +18,11 @@ resources:
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
-  # - ./radarr-4k/ks.yaml
-  # - ./recyclarr/ks.yaml
-  # - ./ring-mqtt/ks.yaml
-  # - ./scrypted/ks.yaml
-  # - ./sonarr/ks.yaml
-  # - ./syncthing/ks.yaml
-  # - ./tautulli/ks.yaml
-  # - ./zwave-js-ui/ks.yaml
+  - ./radarr-4k/ks.yaml
+  - ./recyclarr/ks.yaml
+  - ./ring-mqtt/ks.yaml
+  - ./scrypted/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./syncthing/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./zwave-js-ui/ks.yaml
