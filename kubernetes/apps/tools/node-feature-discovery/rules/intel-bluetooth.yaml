@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/nfd.k8s-sigs.io/nodefeaturerule_v1alpha1.json
+apiVersion: nfd.k8s-sigs.io/v1alpha1
+kind: NodeFeatureRule
+metadata:
+  name: intel-bluetooth-device
+spec:
+  rules:
+    - # Intel Corp. AX201 Bluetooth 8087:0026
+      name: intel.bluetooth
+      labels:
+        nesdr.feature.node.kubernetes.io/intel-bluetooth: "true"
+      matchFeatures:
+        - feature: usb.device
+          matchExpressions:
+            vendor: { op: In, value: ["8087", "0026"] }
