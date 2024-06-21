@@ -54,15 +54,15 @@ spec:
               startup:
                 enabled: false
             securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              privileged: true
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 1Gi
         pod:
+          nodeSelector:
+            intel.feature.node.kubernetes.io/bluetooth: "true"
           securityContext:
             runAsUser: 568
             runAsGroup: 568
@@ -113,3 +113,8 @@ spec:
         existingClaim: home-assistant
       tmp:
         type: emptyDir
+      dbus:
+        enabled: true
+        type: hostPath
+        hostPath: /var/run/dbus
+        mountPath: /var/run/dbus
