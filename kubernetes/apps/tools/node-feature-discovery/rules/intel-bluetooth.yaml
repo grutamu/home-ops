@@ -9,7 +9,7 @@ spec:
     - # Intel Corp. AX201 Bluetooth 8087:0026
       name: intel.bluetooth
       labels:
-        nesdr.feature.node.kubernetes.io/intel-bluetooth: "true"
+        intel.feature.node.kubernetes.io/bluetooth: "true"
       matchFeatures:
         - feature: usb.device
           matchExpressions:
