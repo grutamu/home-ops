@@ -117,4 +117,5 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /var/run/dbus
-        mountPath: /var/run/dbus
+        globalMounts:
+          - path: /var/run/dbus
