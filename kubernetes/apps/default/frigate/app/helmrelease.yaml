@@ -79,7 +79,7 @@ spec:
                         values: ["plex"]
                       - key: app.kubernetes.io/name
                         operator: In
-                        values: ["immich"]
+                        values: ["immich-server"]
                   topologyKey: kubernetes.io/hostname
           nodeSelector:
             google.feature.node.kubernetes.io/coral: "true"
