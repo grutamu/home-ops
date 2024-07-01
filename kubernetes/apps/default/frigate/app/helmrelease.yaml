@@ -76,10 +76,12 @@ spec:
                     matchExpressions:
                       - key: app.kubernetes.io/name
                         operator: In
-                        values: ["plex"]
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values: ["immich-server"]
+                        values:
+                          - plex
+                          - immich-server
+                      # - key: app.kubernetes.io/name
+                      #   operator: In
+                      #   values: ["immich-server"]
                   topologyKey: kubernetes.io/hostname
           nodeSelector:
             google.feature.node.kubernetes.io/coral: "true"
