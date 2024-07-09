@@ -60,6 +60,8 @@ spec:
         enabled: true
         urlPrefix: /
         ssl: false
+      prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:30900
+      prometheusEndpointSSLVerify: false
       storage:
         useAllNodes: false
         useAllDevices: false
