@@ -22,7 +22,7 @@ resources:
   - ./recyclarr/ks.yaml
   - ./ring-mqtt/ks.yaml
   - ./rtlamr2mqtt/ks.yaml
-  - ./scrypted/ks.yaml
+  # - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
   - ./syncthing/ks.yaml
   - ./tautulli/ks.yaml
