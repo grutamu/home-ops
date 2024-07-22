@@ -21,7 +21,7 @@ resources:
   - ./radarr-4k/ks.yaml
   - ./recyclarr/ks.yaml
   - ./ring-mqtt/ks.yaml
-  - ./rtlamr2mqtt/ks.yaml
+  # - ./rtlamr2mqtt/ks.yaml
   # - ./scrypted/ks.yaml
   - ./sonarr/ks.yaml
   - ./syncthing/ks.yaml
