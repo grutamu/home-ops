@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres16v2
+  name: postgres16v3
 spec:
   instances: 3
   imageName: ghcr.io/cloudnative-pg/postgresql:16.3-7
@@ -17,7 +17,7 @@ spec:
   # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster postgres16v1
+      source: &previousCluster postgres16v2
   postgresql:
     parameters:
       max_connections: "600"

@@ -10,4 +10,4 @@ spec:
   immediate: true
   backupOwnerReference: self
   cluster:
-    name: pgvector16v2
+    name: pgvector16v3
