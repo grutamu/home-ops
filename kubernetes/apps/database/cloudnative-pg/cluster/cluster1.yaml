@@ -17,7 +17,7 @@ spec:
   # Note: Bootstrap is needed when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster postgres16v3
+      source: &previousCluster postgres16v2
   postgresql:
     parameters:
       max_connections: "600"
