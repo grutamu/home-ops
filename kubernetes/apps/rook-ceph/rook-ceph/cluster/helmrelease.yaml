@@ -61,8 +61,6 @@ spec:
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:9090
-      # prometheusEndpoint: http://thanos-query-frontend.observability.svc.cluster.local:30900
-      # prometheusEndpointSSLVerify: false
       storage:
         useAllNodes: false
         useAllDevices: false
@@ -93,25 +91,28 @@ spec:
       resources:
         mgr:
           requests:
-            cpu: 500m
+            cpu: 100m
             memory: 512Mi
           limits:
-            cpu: 2000m
-            memory: 1Gi
+            memory: 2Gi
         mon:
           requests:
-            cpu: 1000m
-            memory: 256Mi
+            cpu: 50m
+            memory: 512Mi
           limits:
-            cpu: 4000m
             memory: 1Gi
         osd:
           requests:
-            cpu: 1000m
+            cpu: 500m
             memory: 2Gi
           limits:
-            cpu: 4000m
-            memory: 4Gi
+            memory: 6Gi
+        mgr-sidecar:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            memory: 256Mi
     cephBlockPools:
       - name: ceph-blockpool
         spec:
@@ -124,6 +125,7 @@ spec:
           isDefault: true
           reclaimPolicy: Delete
           allowVolumeExpansion: true
+          volumeBindingMode: Immediate
           parameters:
             imageFormat: "2"
             imageFeatures: layering
@@ -139,46 +141,46 @@ spec:
       name: csi-ceph-blockpool
       isDefault: false
       deletionPolicy: Delete
-    cephFileSystems:
-      - name: ceph-filesystem
-        spec:
-          metadataPool:
-            replicated:
-              size: 2
-          dataPools:
-            - failureDomain: host
-              replicated:
-                size: 2
-              name: data0
-          metadataServer:
-            activeCount: 1
-            activeStandby: true
-            resources:
-              requests:
-                cpu: 1000m
-                memory: 512Mi
-              limits:
-                memory: 1Gi
-        storageClass:
-          enabled: true
-          isDefault: false
-          name: ceph-filesystem
-          pool: data0
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-          parameters:
-            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
-            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
-            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
-            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-            csi.storage.k8s.io/fstype: ext4
-    cephFileSystemVolumeSnapshotClass:
-      enabled: true
-      name: csi-ceph-filesystem
-      isDefault: false
-      deletionPolicy: Delete
+    # cephFileSystems:
+    #   - name: ceph-filesystem
+    #     spec:
+    #       metadataPool:
+    #         replicated:
+    #           size: 2
+    #       dataPools:
+    #         - failureDomain: host
+    #           replicated:
+    #             size: 2
+    #           name: data0
+    #       metadataServer:
+    #         activeCount: 1
+    #         activeStandby: true
+    #         resources:
+    #           requests:
+    #             cpu: 1000m
+    #             memory: 512Mi
+    #           limits:
+    #             memory: 1Gi
+    #     storageClass:
+    #       enabled: true
+    #       isDefault: false
+    #       name: ceph-filesystem
+    #       pool: data0
+    #       reclaimPolicy: Delete
+    #       allowVolumeExpansion: true
+    #       parameters:
+    #         csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+    #         csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+    #         csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+    #         csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+    #         csi.storage.k8s.io/fstype: ext4
+    # cephFileSystemVolumeSnapshotClass:
+    #   enabled: true
+    #   name: csi-ceph-filesystem
+    #   isDefault: false
+    #   deletionPolicy: Delete
     cephObjectStores:
       - name: ceph-objectstore
         spec:
@@ -196,10 +198,10 @@ spec:
             port: 80
             resources:
               requests:
-                cpu: 500m
-                memory: 512Mi
-              limits:
+                cpu: 100m
                 memory: 1Gi
+              limits:
+                memory: 2Gi
             instances: 2
           healthCheck:
             bucket:
