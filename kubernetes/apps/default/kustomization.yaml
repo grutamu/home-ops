@@ -10,7 +10,7 @@ resources:
 
 #optional apps
   - ./frigate/ks.yaml
-  # - ./immich/ks.yaml
+  - ./immich/ks.yaml
   - ./lldap/ks.yaml
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
