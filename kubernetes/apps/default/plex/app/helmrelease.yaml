@@ -42,6 +42,8 @@ spec:
               tag: 1.40.4.8679-424562606@sha256:6caeca24f3b08206a94a6a9c102e2c0c14d46d5a9163241716559e8c83f53ff8
             env:
               TZ: America/Chicago
+              PLEX_ADVERTISE_URL: https://plex.calzone.zone:443,http://192.168.99.110:32400
+              PLEX_NO_AUTH_NETWORKS: 192.168.1.0/24
             probes:
               liveness: &probes
                 enabled: true
