@@ -13,7 +13,7 @@ resources:
   - ./immich/ks.yaml
   - ./lldap/ks.yaml
   - ./overseerr/ks.yaml
-  - ./plex/ks.yaml
+  # - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./radarr-4k/ks.yaml
