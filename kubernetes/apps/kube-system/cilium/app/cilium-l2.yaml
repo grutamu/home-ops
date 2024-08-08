@@ -18,5 +18,10 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: pool
 spec:
-  cidrs:
-    - cidr: "${NODE_CIDR}"
+  allowFirstLastIPs: "Yes"
+  blocks:
+    - # Controller VIP: 192.168.42.120
+      start: 192.168.99.100
+      stop: 192.168.99.149
+  # cidrs:
+  #   - cidr: "${NODE_CIDR}"
