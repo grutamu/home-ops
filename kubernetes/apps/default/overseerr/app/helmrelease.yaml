@@ -39,7 +39,7 @@ spec:
           app:
             image:
               repository: ghcr.io/sct/overseerr
-              tag: 14cf43de26e44d5ef082806c2b97a88ce4bd6c84
+              tag: e75351aa0526e8deaa737f0dd0932dd0aaccb402
             env:
               TZ: America/Chicago
               LOG_LEVEL: "info"
