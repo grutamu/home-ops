@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: docker.io/timberio/vector
-              tag: 0.40.0-debian@sha256:1163571c8b59ab6755c1b5488bb2f129151c3b72130ad0500b10420fcc504d9d
+              tag: 0.43.0-debian@sha256:034947f8b7ea3c974ccec3481da6005dc67291c0b7c0fbf7df6275abe32d9cca
             args: ["--config", "/etc/vector/vector.yaml"]
         pod:
           topologySpreadConstraints:
